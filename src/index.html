@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta  name="description" content="Aniverse, la pagina de anime en donde podras encontrar toda la informacion de tus series favoritas y organizarlas">
     <title>Aniverse</title>
+    <link rel="stylesheet" href="Css/Home/homeMobile.css">
+    <script src="https://kit.fontawesome.com/c82c5bef31.js" crossorigin="anonymous"></script>
 </head>
 <body>
     
     <!-- Start Header -->
     <header>
+        <nav>
+            <div class="nav-row">
+                <div class="logo-container">
+                   <h1>AniVerse</h1>
+                    <div class="logo-img-cont">
+                        <img src="Images/Kintoun.webp" alt="Nube Voladora">
+                    </div>
+                </div>
 
+                <!-- Mobile Header Start -->
+
+                <button class="modal-button">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                
+
+                <!-- Mobile Header End -->
+
+            <!-- Desktop Header Start -->
+
+            <!-- Desktop Header End -->
+            </div>
+        </nav>
     </header>
     <!-- End Header -->
 
@@ -27,8 +51,90 @@
     <!-- End Footer -->
 
     <!-- Modal Start -->
-    <div class="modal-menu-container">
+    <div class="modal-menu-container" id="modal-menu-container">
+        <div class="menu-lateral-container">
+            <div class="superior-buttons">
+                <button id="change-of-colors-buttons"></button>
+                <button id="close-modal-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
 
+            <ul class="ul_menu_lateral">
+                <li>
+                    <a href="login.html">LOGIN</a>
+                </li>
+                <li>
+                    <a href="index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                </li>
+            </ul>
+
+            <div class="genders-container">
+                <div class="tittle-container">
+                    <span>SEARCH FOR GENDERS</span>
+                </div>
+                
+                <hr>
+                
+                <ul class="ul_genders">
+                    <li>
+                        <a href="">Action</a>
+                    </li>
+                    <li>
+                        <a href="">Adventure</a>
+                    </li>
+                    <li>
+                        <a href="">Awant Garde</a>
+                    </li>
+                    <li>
+                        <a href="">Award Winning</a>
+                    </li>
+                    <li>
+                        <a href="">Boys Love</a>
+                    </li>
+                    <li>
+                        <a href="">Comedy</a>
+                    </li>
+                    <li>
+                        <a href="">Drama</a>
+                    </li>
+                    <li>
+                        <a href="">Fantasy</a>
+                    </li>
+                    <li>
+                        <a href="">Girls Love</a>
+                    </li>
+                    <li>
+                        <a href="">Gourment</a>
+                    </li>
+                    <li>
+                        <a href="">Horror</a>
+                    </li>
+                    <li>
+                        <a href="">Mystery</a>
+                    </li>
+                    <li>
+                        <a href="">Romance</a>
+                    </li>
+                    <li>
+                        <a href="">Sci-Fi</a>
+                    </li>
+                    <li>
+                        <a href="">Slice of life</a>
+                    </li>
+                    <li>
+                        <a href="">Sports</a>
+                    </li>
+                    <li>
+                        <a href="">Supernatural</a>
+                    </li>
+                    <li>
+                        <a href="">Suspense</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <!-- Modal End -->
 
