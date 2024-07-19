@@ -1,14 +1,20 @@
 :root{
     --header-color: #333;
     --white-color: #fff;
+    --black-color: #000;
     --button-modal-bars: #EDB06D;
     --button-modal: #021791;
+    --menu-lateral-color: #373D43;
+    --change-color: #ccc;
+    --search-background: #2A2E33;
+    --login-button: #2B2F33;
 }
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: open sans, sans-serif;;
 }
 
 body{
@@ -28,7 +34,7 @@ nav{
 }
 
 .nav-row{
-    width: 90%;
+    width: 80%;
     height: 72px;
     margin: 0 auto;
     display: flex;
@@ -71,3 +77,137 @@ nav{
     font-size: 20px;
     color: var(--button-modal-bars);
 }
+
+
+.modal-menu-container{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+}
+
+.menu-lateral-container{
+    position: fixed;
+    width: 75%;
+    height: 100%;
+    background: var(--menu-lateral-color);
+    padding: 10px;
+    transform: translateX(-270px);
+    transition: all 0.5s linear;
+}
+
+.visible-modal{
+    opacity: 1;
+    visibility: visible;
+}
+
+.visible-menu{
+    transform: translateX(0);
+}
+
+.superior-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#change-of-colors-button{
+    width: 70px;
+    height: 30px;
+    background: var(--change-color);
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    position: relative;
+}
+
+#change-of-colors-button::after{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    right: 5px;
+    background: var(--white-color);
+    border-radius: 20px;
+}
+
+#close-modal-button{
+    width: 30px;
+    height: 30px;
+    border-radius: 200px 200px 200px 200px;
+    border: 1px solid var(--black-color);    
+}
+
+#close-modal-button i{
+    font-size: 22px;
+}
+
+.search-container{
+    margin: 0 10px;
+    padding: 15px 0;
+    position: relative;
+}
+
+.search-container input{
+    background: var(--search-background);
+    color: var(--white-color);
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.search-button{
+    width: 35px;
+    height: 35px;
+    background: var(--search-background);
+    position: absolute;
+    border-radius: 200px 200px 200px 200px;
+    scale: 0.8;
+    border: none;
+    transform: translateX(-45px);
+}
+
+.search-button:hover{
+    background: var(--header-color)
+}
+
+.search-button i{
+    color: var(--white-color);
+}
+
+.ul_menu_lateral{
+    list-style: none;
+    margin: 0 10px;
+    padding: 10px 0;
+}
+
+.ul_menu_lateral li{
+    padding: 20px 0 ;
+}
+
+.ul_menu_lateral li:first-child a{
+    background: var(--login-button);
+    border-radius: 10px;
+    padding: 5px 15px;
+    border: 1px solid var(--header-color);
+}
+
+.ul_menu_lateral li a{
+    color:#E4E4E4;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+    display: inline-block ;
+}
+
+
+
