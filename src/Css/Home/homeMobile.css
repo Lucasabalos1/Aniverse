@@ -8,6 +8,7 @@
     --change-color: #ccc;
     --search-background: #2A2E33;
     --login-button: #2B2F33;
+    --more-info-button: #FF9900;
 }
 
 *{
@@ -90,6 +91,7 @@ nav{
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s linear;
+    z-index: 3;
 }
 
 .menu-lateral-container{
@@ -209,5 +211,126 @@ nav{
     display: inline-block ;
 }
 
+.ul_menu_lateral li a:hover{
+    color: #B1B1B1;
+}
 
 
+.genders-container{
+    padding: 10px 0;
+    margin: 0 10px;
+}
+
+.tittle-container{
+    margin-bottom: 5px;
+}
+
+.tittle-container span{
+    color: var(--white-color);
+    font-size: 0.7rem;
+}
+
+.ul_genders{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: var(--login-button);
+    margin-top: 15px;    
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.ul_genders li{
+    padding: 5px;
+}
+
+.ul_genders li a{
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.ul_genders li a:hover{
+    color: #B1B1B1;
+}
+
+
+main{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main-container{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+.welcome-section{
+    width: 100%;
+    height: 600px;
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.swiper-slide::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 7%, rgba(0, 0, 0, 0) 100%);
+}
+
+.swiper-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.more-info-button-cont{
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    bottom:0;
+    left: 0;
+    transform: translateY(-50px);
+    display: grid;
+    place-items: center;
+}
+
+.more-info-button{
+    padding: 15px 5px;
+    background: var(--more-info-button);
+    border: 1px solid var(--white-color);
+    border-radius: 10px;
+}
+.more-info-button a{
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--black-color);
+    text-decoration: none;
+}
+.swiper-pagination-bullet {
+    background: var(--white-color);
+    opacity: 1;
+    width: 50px;
+    border-radius: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--more-info-button);
+}
+  

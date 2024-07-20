@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta  name="description" content="Aniverse, la pagina de anime en donde podras encontrar toda la informacion de tus series favoritas y organizarlas">
     <title>Aniverse</title>
+    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="Css/Home/homeMobile.css">
-    <script src="https://kit.fontawesome.com/c82c5bef31.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
 </head>
 <body>
     
@@ -23,7 +24,7 @@
 
                 <!-- Mobile Header Start -->
 
-                <button class="modal-button">
+                <button class="modal-button" aria-label="openModal">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 
@@ -40,7 +41,46 @@
 
     <!-- Start Main -->
     <main>
+        <div class="main-container">
+            
+            <section class="welcome-section">
+                <div class="swiper mySwiper">
+                    
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                         <img src="Images/one_piece.webp" alt="anime-image">
+                         <div class="more-info-button-cont">
+                            <button class="more-info-button"><a href="">More Information</a></button>
+                         </div>
+                      </div>
+                      
+                      <div class="swiper-slide">
+                         <img src="Images/one_piece.webp" alt="anime-image">
+                         <div class="more-info-button-cont">
+                            <button class="more-info-button"><a href="">More Information</a></button>
+                         </div>
+                      </div>
+                      
+                      <div class="swiper-slide">
+                         <img src="Images/one_piece.webp" alt="anime-image">
+                         <div class="more-info-button-cont">
+                            <button class="more-info-button"><a href="">More Information</a></button>
+                         </div>
+                      </div>
+                      
+                      <div class="swiper-slide">
+                         <img src="Images/one_piece.webp" alt="anime-image">
+                         <div class="more-info-button-cont">
+                            <button class="more-info-button"><a href="">More Information</a></button>
+                         </div>
+                      </div>
 
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>                
+            </section>
+            
+        </div>
     </main>
     <!-- End Main -->
 
@@ -55,7 +95,7 @@
         <div class="menu-lateral-container" >
             <div class="superior-buttons">
                 <button id="change-of-colors-button"></button>
-                <button id="close-modal-button"><i class="fa-solid fa-xmark"></i></button>
+                <button id="close-modal-button" aria-label="closeModal"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <div class="search-container">
@@ -151,6 +191,9 @@
     </div>
     <!-- Return Buttons End -->
 
+    <!-- Scripts -->
+    <script src="node_modules/swiper/swiper-bundle.min.js"></script>
     <script src="js/Home/script.js"></script>
+    
 </body>
 </html>
