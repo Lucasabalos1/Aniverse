@@ -282,6 +282,8 @@ main{
     position: relative;
 }
 
+
+
 .swiper-slide::after {
     content: "";
     width: 100%;
@@ -290,7 +292,7 @@ main{
     top: 0;
     left: 0;
     z-index: 1;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 7%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) 100%);
 }
 
 .swiper-slide img{
@@ -299,6 +301,28 @@ main{
     object-fit: cover;
 }
 
+.serie-name-cont{
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    transform: translateY(30px);
+}
+
+.serie-name{
+    color: var(--white-color);
+    font-size: 1.3rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.2s linear;
+}
+
+.swiper-slide:hover .serie-name{
+    opacity: 1;
+}
 
 .more-info-button-cont{
     width: 100%;
