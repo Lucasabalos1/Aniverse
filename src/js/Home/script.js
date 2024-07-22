@@ -18,6 +18,16 @@ const inicializeSwipper = () => {
         },
         simulateTouch: false,
     });
+
+    var swiperPopular = new Swiper(".mySwiperPopular", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        simulateTouch: false
+      });
+
+    
 }
 
 
@@ -62,3 +72,29 @@ const inicializeWelcomeSection = async () => {
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
 document.addEventListener("DOMContentLoaded", inicializeWelcomeSection)
+
+/*
+
+<div class="swiper-slide"> 
+
+                                <a href="">
+                                    <div class="image-swiper-cont">
+                                        <img src="Images/one_piece.webp" alt="popular-image">
+                                        <div class="anime-title-cont">
+                                            <span class="anime-title">ONE PIECE</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a href="">
+                                    <div class="image-swiper-cont">
+                                        <img src="Images/one_piece.webp" alt="popular-image">
+                                        <div class="anime-title-cont">
+                                            <span class="anime-title">ONE PIECE</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+</div>
+
+*/
