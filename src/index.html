@@ -45,7 +45,7 @@
             
             <section class="welcome-section">
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="swiper-welcome-wrapper">
                     </div>
                     <div class="swiper-pagination"></div>
                   </div>                
@@ -53,10 +53,10 @@
 
             <section class="anime-popular-section">
                 <div class="anime-popular-container">
-                    
+
                     <div class="anime-popular-row">
-                        <span class="popular-title">YOUR LIST</span>
-                        <div class="popular-button-container">
+                        <span class="popular-title">POPULAR LIST</span>
+                        <div class="popular-button-container" id="popular-list-button">
                             <div class="plus-container">
                                 <i class="fa-solid fa-plus"></i>
                             </div>
@@ -69,73 +69,36 @@
                     <hr>
 
                     <div class="swiper mySwiperPopular">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper" id="swiper-popular-wrapper">
+                        </div>
+                        
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    
+                    </div>
+                    
+                </div>
+            </section>
 
-                            <div class="swiper-slide"> 
+            <section class="user-anime-list-section">
+                <div class="user-animes-container">
 
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
+                    <div class="anime-user-list-row">
+                        <span class="user-list-title">YOUR LIST</span>
+                        <div class="user-list-button-container" id="user-list-button">
+                            <div class="plus-container">
+                                <i class="fa-solid fa-plus"></i>
                             </div>
-
-                            <div class="swiper-slide"> 
-
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
+                            <div class="title-user-list-button">
+                                <span>View All</span>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="swiper-slide"> 
+                    <hr>
 
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                                <a href="">
-                                    <div class="image-swiper-cont">
-                                        <img src="Images/one_piece.webp" alt="popular-image">
-                                        <div class="anime-title-cont">
-                                            <span class="anime-title">ONE PIECE</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                            </div>
+                    <div class="swiper mySwiperUserList">
+                        <div class="swiper-wrapper" id="swiper-user-list-wrapper">
 
                         </div>
                         
@@ -146,6 +109,35 @@
                     
                 </div>
             </section>
+
+            <!-- <section class="recommendation-random-section">
+                <div class="recommendation-random-container">
+                    <div class="anime-background-image">
+                        <img src="Images/one_piece.webp" alt="">
+                    </div>
+
+                    <div class="anime-random-cont">
+                        
+                        <div class="anime-random-image-cont">
+                            <img src="Images/one_piece.webp" alt="">
+                        </div>
+
+                        <div class="random-anime-title">
+                            <span>ONE PIECE</span>
+                        </div>
+
+                        <div class="genres-cont">
+                            <span class="genre">Aventura</span>
+                        </div>
+
+                        <div class="generate-cont">
+                            <button id="generate-anime">Generate anime</button>
+                            <button id="more-info-anime">More info</button>
+                        </div>
+
+                    </div>
+                </div>
+            </section> -->
             
         </div>
     </main>

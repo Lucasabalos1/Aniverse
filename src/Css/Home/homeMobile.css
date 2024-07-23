@@ -336,7 +336,8 @@ main{
 }
 
 .more-info-button{
-    padding: 15px 5px;
+    width: 50%;
+    height: 40px;
     background: var(--more-info-button);
     border: 1px solid var(--white-color);
     border-radius: 10px;
@@ -358,30 +359,35 @@ main{
     background: var(--more-info-button);
 }
   
-.anime-popular-section{
+.anime-popular-section,
+.user-anime-list-section{
     width: 100%;
     padding-top: 20px;
 }
 
-.anime-popular-container{
+.anime-popular-container,
+.user-animes-container{
     width: 90%;
     margin: 0 auto;
 }
 
-.anime-popular-row{
+.anime-popular-row,
+.anime-user-list-row{
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
 }
 
-.anime-popular-row span{
+.anime-popular-row span,
+.anime-user-list-row span{
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--header-color);
 }
 
-.popular-button-container{
+.popular-button-container,
+.user-list-button-container{
     padding: 0 5px;
     border-radius: 20px;
     background: var(--view-all-button);
@@ -401,24 +407,30 @@ main{
     border-radius: 20px;
 }
 
-.title-popular-button span {
+.title-popular-button span ,
+.title-user-list-button span{
     font-size: 1rem;
     color: var(--black-color);
 }
 
-.anime-popular-container hr{
+.anime-popular-container hr,
+.user-animes-container{
     margin-bottom: 10px ;
 }
-.mySwiperPopular{
+.mySwiperPopular,
+.mySwiperUserList{
     margin-bottom: 10px;
 }
-.mySwiperPopular .swiper-slide{
+
+.mySwiperPopular .swiper-slide,
+.mySwiperUserList .swiper-slide{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.swiper-slide a{
-    width: 50%;
+.mySwiperPopular .swiper-slide a,
+.mySwiperUserList .swiper-slide a{
+    width: 100%;
     padding-right: 10px;
 }
 
@@ -469,10 +481,19 @@ main{
 }
 
 .mySwiperPopular .swiper-button-next::after,
-.mySwiperPopular .swiper-button-prev::after{
+.mySwiperPopular .swiper-button-prev::after,
+.mySwiperUserList .swiper-button-next::after,
+.mySwiperUserList .swiper-button-prev::after{
     font-size: 2rem;
     color: var(--more-info-button);
     font-weight: bold;
+}
+
+.message-error{
+    color: #611e1e;
+    font-size: 1.3rem;
+    font-weight: bold;
+    width: 100%;
 }
 
 
