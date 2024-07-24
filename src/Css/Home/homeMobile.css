@@ -11,6 +11,8 @@
     --more-info-button: #FF9900;
     --view-all-button: #E4E4E4;
     --plus-container: #d9d9d9;
+    --genres-button: #2D709F;
+    --random-generate-button: #182862;
 }
 
 *{
@@ -497,3 +499,100 @@ main{
 }
 
 
+.recommendation-random-section{
+    width: 100%;
+    padding-top: 20px;
+}
+
+.recommendation-random-container{
+    width: 100%;
+    position: relative;
+}
+
+.anime-background-image{
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+
+.anime-background-image img{
+    width: 100%;
+    height: 100%;
+    filter: blur(5px);
+}
+
+.anime-background-image::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.anime-random-cont{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.anime-random-image-cont{
+    width: 50%;
+    padding-top: 20px;
+}
+.anime-random-image-cont img{
+    width: 100%;
+    height: 100%;
+}
+
+.random-anime-title,
+.genres-cont,
+.generate-cont{
+    width: 100%; 
+    text-align: center;
+    padding-top: 20px;    
+}
+
+.random-anime-title span{
+    font-size: 2rem;
+    color: var(--white-color);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.genres-cont, 
+.generate-cont{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.genre,
+#more-info-anime{
+    color: var(--white-color);
+    background: var(--genres-button);
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+
+#generate-anime{
+    color: var(--white-color);
+    background: var(--random-generate-button);
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 15px 20px;
+    border: 1px solid var(--menu-lateral-color);
+}
+
+#more-info-anime{
+    padding: 15px 30px;
+    border: 1px solid var(--menu-lateral-color);
+}
