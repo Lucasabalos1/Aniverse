@@ -1,9 +1,14 @@
+/*
+Obtener por generos
+https://api.jikan.moe/v4/anime?genres=1&limit=20*/
+
 const modal = document.getElementById("modal-menu-container");
 const lateralMenu = document.querySelector(".menu-lateral-container");
 const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
+const randomSection = document.getElementById("recommendation-random-section");
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -32,38 +37,7 @@ const inicializeSwipper = () => {
         },
         simulateTouch: false,
     });
-    
 }
-
-const inicializeSwipperPopular = () => {
-    let swiperPopular = new Swiper(".mySwiperPopular", {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        simulateTouch: false,
-        slidesPerView: (window.screen.width < 800) ? 2 : 3
-
-      });
-}
-
-const inicializeSwipperUserList = () => {
-    let swiperPopular = new Swiper(".mySwiperUserList", {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        simulateTouch: false,
-        slidesPerView: (window.screen.width < 800) ? 2 : 3
-
-      });
-}
-
-
-
-
-
-
 
 const drawInWelcome = (serie) => {
 
@@ -80,30 +54,7 @@ const drawInWelcome = (serie) => {
             <span class="serie-name">${serie.title.toUpperCase()}</span>
          </div>
     `
-    
     swiperWelcomeWrapper.appendChild(slide);
-}
-
-const drawPopularAnime = (series) => {
-    
-    series.forEach(serie => {
-        console.log()
-        let slide = document.createElement("DIV");
-
-        slide.classList.add("swiper-slide");
-        
-        slide.innerHTML = `
-        <a href="">
-            <div class="image-swiper-cont">
-                <img src="${serie.images["webp"].large_image_url}" alt="popular-image">
-                <div class="anime-title-cont">
-                    <span class="anime-title">${serie.title.toUpperCase()}</span>
-                </div>
-            </div>
-        </a>
-        `
-        swiperPopularWrapper.appendChild(slide);
-    });
 }
 
 const inicializeWelcomeSection = async () => {
@@ -125,6 +76,39 @@ const inicializeWelcomeSection = async () => {
     inicializeSwipper();
 };
 
+const inicializeSwipperPopular = () => {
+    let swiperPopular = new Swiper(".mySwiperPopular", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        simulateTouch: false,
+        slidesPerView: (window.screen.width < 800) ? 2 : 3
+
+      });
+}
+
+const drawPopularAnime = (series) => {
+    
+    series.forEach(serie => {
+        let slide = document.createElement("DIV");
+
+        slide.classList.add("swiper-slide");
+        
+        slide.innerHTML = `
+        <a href="">
+            <div class="image-swiper-cont">
+                <img src="${serie.images["webp"].large_image_url}" alt="popular-image">
+                <div class="anime-title-cont">
+                    <span class="anime-title">${serie.title.toUpperCase()}</span>
+                </div>
+            </div>
+        </a>
+        `
+        swiperPopularWrapper.appendChild(slide);
+    });
+}
+
 const inicializePopularSection = async () => {
     try {
         let response = await fetch("https://api.jikan.moe/v4/top/anime?limit=12");
@@ -134,6 +118,18 @@ const inicializePopularSection = async () => {
         console.log("La api fallo");
     }
     inicializeSwipperPopular();
+}
+
+const inicializeSwipperUserList = () => {
+    let swiperPopular = new Swiper(".mySwiperUserList", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        simulateTouch: false,
+        slidesPerView: (window.screen.width < 800) ? 2 : 3
+
+      });
 }
 
 const inicializeUserListSection = () => {
@@ -148,10 +144,85 @@ const inicializeUserListSection = () => {
     inicializeSwipperUserList()
 }
 
+const drawAnimeRandom = (serie) => {
+    if (randomSection.firstElementChild) {
+        randomSection.removeChild(randomSection.firstElementChild)
+    }
 
+    let randomContainer = document.createElement("DIV");
+
+    randomContainer.classList.add("recommendation-random-container");
+    
+    randomContainer.innerHTML = `
+    
+        <div class="anime-background-image">
+            <img src="${serie.images["webp"].large_image_url}" alt="random-anime-background">
+        </div>
+
+        <div class="anime-random-cont">
+                        
+            <div class="anime-random-image-cont">
+                <img src="${serie.images["webp"].large_image_url}" alt="anime-random">
+            </div>
+
+            <div class="random-anime-title">
+                    <span>${serie.title}</span>
+            </div>
+
+            <div class="genres-cont">
+                <span class="genre">${serie.genres[0]["name"]}</span>
+                ${(serie.genres.length == 2) ? `<span class="genre">${serie.genres[1]["name"]}</span>` : "" }
+                ${(serie.genres.length > 2) ? `<span class="genre">${serie.genres[2]["name"]}</span>` : "" }
+                ${(serie.genres.length > 3) ? `<span class="genre">${serie.genres[3]["name"]}</span>` : "" }
+            </div>
+
+            <div class="generate-cont">
+                <button id="generate-anime">Generate anime</button>
+                <button id="more-info-anime">More info</button>
+            </div>
+
+        </div>
+    
+    `
+    randomSection.appendChild(randomContainer);
+    document.getElementById("generate-anime").addEventListener("click", generateAnimeRandom);
+   
+
+    window.sr = ScrollReveal();
+    sr.reveal(".recommendation-random-container",{
+        scale: 0.95,    
+        duration: 1000,
+        reset: true
+    })
+}
+
+const generateAnimeRandom = async () => {
+    try {
+        let response = await fetch("https://api.jikan.moe/v4/random/anime");
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        let animeRandom = await response.json();
+
+        const isHentai = animeRandom.data.genres.some(genre => genre.name.toLowerCase() === 'hentai');
+        if (isHentai) {
+            console.log("Hentai genre detected, fetching another anime...");
+            generateAnimeRandom(); 
+            return;
+        }
+
+        drawAnimeRandom(animeRandom.data);
+    } catch (error) {
+        console.log(`API call failed: ${error.message}. Retrying...`);
+        generateAnimeRandom();
+    }
+};
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
 document.addEventListener("DOMContentLoaded", inicializeWelcomeSection);
 document.addEventListener("DOMContentLoaded", inicializePopularSection);
-document.addEventListener("DOMContentLoaded", inicializeUserListSection)
+document.addEventListener("DOMContentLoaded", inicializeUserListSection);
+document.addEventListener("DOMContentLoaded", generateAnimeRandom);

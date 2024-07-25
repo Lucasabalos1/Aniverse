@@ -511,7 +511,7 @@ main{
 
 .anime-background-image{
     width: 100%;
-    height: 500px;
+    height: 600px;
     position: relative;
 }
 
@@ -542,6 +542,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .anime-random-image-cont{
@@ -558,7 +559,7 @@ main{
 .generate-cont{
     width: 100%; 
     text-align: center;
-    padding-top: 20px;    
+    padding-top: 30px;    
 }
 
 .random-anime-title span{
