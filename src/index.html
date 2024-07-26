@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="Css/Home/homeMobile.css">
     <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
     <script src="node_modules/scrollreveal/dist/scrollreveal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">emailjs.init('niTGv4uNgg2305CH5')</script>
 </head>
 <body>
     
@@ -120,7 +122,40 @@
 
     <!-- Start Footer -->
     <footer>
-
+        <section class="footer-section">
+            <div class="footer-container">
+                <section class="form-section">
+                    <div class="text-contact-cont">
+                        <span> CONTACT ME </span>
+                    </div>
+                    <hr>
+                    <div class="form-container">
+                      <form id="form">
+        
+                        <div class="name-container">
+                          <label for="name-container">Nombre completo<b>*</b></label>
+                          <input type="text" name="from_name" id="name_input" placeholder="Ingrese su nombre" minlength="3" maxlength="48">
+                        </div>
+        
+                        <div class="email-container">
+                          <label for="email-container">Email<b>*</b></label>
+                          <input type="email" name="email_id" id="email_input" placeholder="Ingrese su mail" minlength="12" maxlength="48">
+                        </div>
+        
+                        <div class="message-container">
+                          <label for="message-container">Mensaje<b>*</b></label>
+                          <textarea name="message" id="message_input" rows="6" cols="30" placeholder="Redacte su mensaje" minlength="20"></textarea>
+                        </div>
+        
+                        <div class="button-container">
+                          <input type="submit" id="send-button" value="ENVIAR EMAIL">
+                        </div>
+        
+                      </form>
+                    </div>
+                </section>
+            </div>
+        </section>
     </footer>
     <!-- End Footer -->
 
