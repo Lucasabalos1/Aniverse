@@ -1,0 +1,28 @@
+@media (min-width: 1024px) {
+    .modal-button{
+        display: none;
+    }
+
+    .desktop-nav{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .ul_menu_lateral-desk{
+        display: flex;
+        list-style: none;
+    }
+
+    .ul_menu_lateral-desk li{
+        padding: 0 10px;
+    }
+
+    .ul_menu_lateral-desk li a{
+        color: var(--white-color);
+        text-decoration: none;
+        font-size: 22px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+}

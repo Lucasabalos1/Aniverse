@@ -84,7 +84,7 @@ const inicializeSwipperPopular = () => {
           prevEl: ".swiper-button-prev",
         },
         simulateTouch: false,
-        slidesPerView: (window.screen.width < 800) ? 2 : 3
+        slidesPerView: (window.screen.width < 800) ? 2 : 6
 
       });
 }
@@ -128,7 +128,7 @@ const inicializeSwipperUserList = () => {
           prevEl: ".swiper-button-prev",
         },
         simulateTouch: false,
-        slidesPerView: (window.screen.width < 800) ? 2 : 3
+        slidesPerView: (window.screen.width < 800) ? 2 : 6
 
       });
 }
@@ -255,7 +255,9 @@ document.getElementById("form").addEventListener("submit", (event) => {
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
-document.addEventListener("DOMContentLoaded", inicializeWelcomeSection);
-document.addEventListener("DOMContentLoaded", inicializePopularSection);
-document.addEventListener("DOMContentLoaded", inicializeUserListSection);
-document.addEventListener("DOMContentLoaded", generateAnimeRandom);
+document.addEventListener("DOMContentLoaded", () =>{
+    inicializeWelcomeSection();
+    inicializePopularSection();
+    inicializeUserListSection();
+    generateAnimeRandom();
+})
