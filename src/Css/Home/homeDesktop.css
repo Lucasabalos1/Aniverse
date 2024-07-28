@@ -1,0 +1,63 @@
+@media (min-width: 1024px) {
+    
+    
+    .welcome-section{
+        height: 530px;
+    }
+    .mySwiper .swiper-slide::after {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .mySwiper .swiper-slide img{
+        width: 50%;
+        position: absolute;
+        right: 0;
+    }
+
+   .serie-name-cont{
+        z-index: 2;
+        width: 50%;
+        place-items: start;
+        transform: translateY(120px) translateX(50px);
+   }
+
+   .serie-name{
+        opacity: 1;
+        font-size: 1.8rem;
+   }
+
+   .more-info-button-cont{
+        width: 50%;
+        place-items: start;
+        transform: translateY(-150px) translateX(50px);
+   }
+
+   .serie-descr-cont{
+        opacity: 1;
+        z-index: 2;
+        transform: translateX(50px) translateY(200px);
+   }
+
+   .swiper-pagination{
+        text-align: start;
+        transform: translateX(50px) translateY(-100px);
+   }
+
+  
+}
+
+@media (min-width: 600px){
+    .anime-random-cont{
+        flex-direction: row;
+   }
+
+   .anime-random-image-cont{
+        width: 25%;
+   }
+
+   .info-anime-random{
+     width: 50%;
+   }
+
+}
+

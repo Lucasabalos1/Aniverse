@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Css/Home/homeMobile.css">
     <link rel="stylesheet" href="Css/Universal/universalMobile.css">
     <link rel="stylesheet" href="Css/Universal/UniversalDesktop.css">
+    <link rel="stylesheet" href="Css/Home/homeDesktop.css">
     <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
     <script src="node_modules/scrollreveal/dist/scrollreveal.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -19,7 +20,26 @@
     <!-- Start Header -->
     <header>
         <nav>
+             <!-- Mobile Header Start -->
             <div class="nav-row">
+
+                <div class="logo-container">
+                    <h1>AniVerse</h1>
+                     <div class="logo-img-cont">
+                         <img src="Images/Kintoun.webp" alt="Nube Voladora">
+                     </div>
+                 </div>
+  
+                 <button class="modal-button" aria-label="openModal">
+                     <i class="fa-solid fa-bars"></i>
+                 </button>
+ 
+            </div>
+            <!-- Mobile Header End -->
+
+            <!-- Desktop Header Start -->
+            <div class="nav-row-desk">
+
                 <div class="logo-container">
                    <h1>AniVerse</h1>
                     <div class="logo-img-cont">
@@ -27,37 +47,28 @@
                     </div>
                 </div>
 
-                <!-- Mobile Header Start -->
-
-                <button class="modal-button" aria-label="openModal">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                
-
-                <!-- Mobile Header End -->
-
-            <!-- Desktop Header Start -->
-                <div class="desktop-nav">
-                    <ul class="ul_menu_lateral-desk">    
-                        <li>
-                            <a href="index.html">HOME</a>
-                        </li>
-                        <li>
-                            <a href="advanceSearch.html">ADVANCE SEARCH</a>
-                        </li>
-                    </ul>
-                    <div class="search-container">
-                        <input type="text" placeholder="ingrese una serie...">
-                        <button class="search-button">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>   
-                    <div class="login-cont">
-                        <a href="">LOGIN</a>
-                    </div>
+                <ul class="ul_menu_lateral-desk">    
+                    <li>
+                        <a href="index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                    </li>
+                </ul>
+                    
+                <div class="search-container">
+                    <input type="text" placeholder="ingrese una serie...">
+                    <button class="search-button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
-            <!-- Desktop Header End -->
+
+                <div class="login-cont">
+                    <a href="">LOGIN</a>
+                </div>
             </div>
+            <!-- Desktop Header End -->
+             
         </nav>
     </header>
     <!-- End Header -->

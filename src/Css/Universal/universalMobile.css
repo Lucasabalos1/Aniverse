@@ -47,6 +47,10 @@ nav{
     align-items: center;
 }
 
+.nav-row-desk{
+    display: none;
+}
+
 .logo-container{
     display: flex;
     width: 165px;
@@ -83,9 +87,6 @@ nav{
     color: var(--button-modal-bars);
 }
 
-.desktop-nav{
-    display: none;
-}
 
 .modal-menu-container{
     display: block;

@@ -65,6 +65,22 @@ main{
     opacity: 1;
 }
 
+.serie-descr-cont{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 50%;
+    text-align: start;
+}
+
+.description{
+    color: #777;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
 .more-info-button-cont{
     width: 100%;
     position: absolute;
@@ -250,7 +266,7 @@ main{
 
 .anime-background-image{
     width: 100%;
-    height: 600px;
+    height: 650px;
     position: relative;
 }
 
@@ -293,6 +309,7 @@ main{
     height: 100%;
 }
 
+
 .random-anime-title,
 .genres-cont,
 .generate-cont{
@@ -319,7 +336,7 @@ main{
     color: var(--white-color);
     background: var(--genres-button);
     border-radius: 20px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     font-size: 12px;
 }
 

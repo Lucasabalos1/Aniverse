@@ -40,7 +40,7 @@ const inicializeSwipper = () => {
     });
 }
 
-const drawInWelcome = (serie) => {
+const drawInWelcome = (serie, description) => {
 
     let slide = document.createElement("DIV");
 
@@ -54,6 +54,9 @@ const drawInWelcome = (serie) => {
          <div class="serie-name-cont">
             <span class="serie-name">${serie.title.toUpperCase()}</span>
          </div>
+         <div class ="serie-descr-cont">
+            <span class = "description">${description}</span>
+         </div>
     `
     swiperWelcomeWrapper.appendChild(slide);
 }
@@ -61,6 +64,12 @@ const drawInWelcome = (serie) => {
 const inicializeWelcomeSection = async () => {
     
     const welcomeSeries = [41467,813,21,20];
+    const descriptionSeries = [
+        "Sigue a Ichigo Kurosaki, un adolescente que puede ver fantasmas. Su vida cambia cuando conoce a Rukia Kuchiki, una Segadora de Almas, y recibe sus poderes para proteger a su familia de un Hollow, un espíritu maligno. Ahora, como un Segador de Almas sustituto, Ichigo debe defender a los vivos y a los muertos, enfrentando a poderosos enemigos y desentrañando secretos del mundo espiritual.",
+        "Sigue las aventuras de Goku, un poderoso guerrero Saiyajin, y sus amigos mientras defienden la Tierra de amenazas cósmicas. A lo largo de la serie, Goku y sus aliados enfrentan a enemigos formidables como Vegeta, Freezer, Cell y Majin Buu. La serie destaca por sus intensas batallas, transformaciones épicas y la búsqueda de las esferas del dragón, que pueden conceder cualquier deseo.",
+        "Sigue a Monkey D. Luffy, un joven pirata con habilidades elásticas tras comer una Fruta del Diablo. Junto a su tripulación, los Piratas del Sombrero de Paja, Luffy navega en busca del legendario tesoro One Piece para convertirse en el Rey de los Piratas. En su travesía, enfrentan peligros y enemigos mientras exploran el vasto mar de la Gran Línea.",
+        "Sigue la historia de Naruto Uzumaki, un joven ninja con el sueño de convertirse en el Hokage, el líder de su aldea. A pesar de ser rechazado y solitario debido al demonio zorro de nueve colas sellado dentro de él, Naruto lucha por ganarse el respeto de los demás y demostrar su valía. A lo largo de su viaje, forma profundas amistades, enfrenta peligrosos enemigos y enfrenta desafíos personales mientras busca alcanzar su sueño y proteger a sus seres queridos."
+    ]
 
     for (let index = 0; index < welcomeSeries.length; index++) {
         try {
@@ -68,7 +77,7 @@ const inicializeWelcomeSection = async () => {
             
             let data =  await response.json();
                         
-            drawInWelcome(data.data)
+            drawInWelcome(data.data, descriptionSeries[index])
             
         } catch (error) {
             console.log("La api fallo")
@@ -166,20 +175,23 @@ const drawAnimeRandom = (serie) => {
                 <img src="${serie.images["webp"].large_image_url}" alt="anime-random">
             </div>
 
-            <div class="random-anime-title">
-                    <span>${serie.title}</span>
-            </div>
+            <div class="info-anime-random">
+         
+                <div class="random-anime-title">
+                        <span>${serie.title}</span>
+                </div>
 
-            <div class="genres-cont">
-                <span class="genre">${serie.genres[0]["name"]}</span>
-                ${(serie.genres.length == 2) ? `<span class="genre">${serie.genres[1]["name"]}</span>` : "" }
-                ${(serie.genres.length > 2) ? `<span class="genre">${serie.genres[2]["name"]}</span>` : "" }
-                ${(serie.genres.length > 3) ? `<span class="genre">${serie.genres[3]["name"]}</span>` : "" }
-            </div>
+                <div class="genres-cont">
+                    <span class="genre">${serie.genres[0]["name"]}</span>
+                    ${(serie.genres.length == 2) ? `<span class="genre">${serie.genres[1]["name"]}</span>` : "" }
+                    ${(serie.genres.length > 2) ? `<span class="genre">${serie.genres[2]["name"]}</span>` : "" }
+                    ${(serie.genres.length > 3) ? `<span class="genre">${serie.genres[3]["name"]}</span>` : "" }
+                </div>
 
-            <div class="generate-cont">
-                <button id="generate-anime">Generate anime</button>
-                <button id="more-info-anime">More info</button>
+                <div class="generate-cont">
+                    <button id="generate-anime">Generate anime</button>
+                    <button id="more-info-anime">More info</button>
+                </div>
             </div>
 
         </div>

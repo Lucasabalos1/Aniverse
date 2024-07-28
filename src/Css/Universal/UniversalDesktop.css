@@ -1,13 +1,17 @@
 @media (min-width: 1024px) {
-    .modal-button{
+
+    
+    .nav-row{
         display: none;
     }
-
-    .desktop-nav{
+    
+    .nav-row-desk{
         display: flex;
-        width: 100%;
+        width: 80%;
+        height: 62px;
+        margin: 0 auto;        
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .ul_menu_lateral-desk{
@@ -16,13 +20,36 @@
     }
 
     .ul_menu_lateral-desk li{
-        padding: 0 10px;
+        padding: 0 20px;
     }
 
     .ul_menu_lateral-desk li a{
         color: var(--white-color);
         text-decoration: none;
-        font-size: 22px;
+        font-size: 18px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
+
+    .search-container input{
+        width: 250px;
+    }
+
+    .login-cont a{
+        background: var(--login-button);
+        border-radius: 10px;
+        padding: 10px 15px;
+        border: 1px solid var(--header-color);
+        color: var(--white-color);
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .login-cont a:hover{
+        background: rgba(233, 233, 233, 0.2);
+    }
+
+    .footer-container{
+        padding: 10px 100px;
+    }
+
 }
