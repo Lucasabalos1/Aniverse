@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniverse - Register</title>
+    <link rel="stylesheet" href="../Css/LoginAndRegister/LoginRegister.css">
+</head>
+<body>
+    
+    <!-- Header start -->
+    <header>
+        <nav>
+            <div class="nav-row">
+                <div class="logo-container">
+                    <h1>AniVerse</h1>
+                     <div class="logo-img-cont">
+                         <img src="../Images/Kintoun.webp" alt="Nube Voladora">
+                     </div>
+                 </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header end -->
+
+    <!-- Main start -->
+    <main>
+        <div class="main-container">
+            <section class="login-register-section">
+                
+                <div class="register-container">
+                    <div class="register-title-cont">
+                        <span class="title">REGISTER</span>
+                    </div>
+                    <form id="register-form">
+
+                        <div class="user-cont">
+                            <label for="username">User: </label>
+                            <input type="text" id="username" name="username" placeholder="Enter your user..." required>
+                        </div>
+
+                        <div class="pasword-cont">
+                            
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password..." required>
+
+                            <label for="confirm-password">Confirm password: </label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your user..." required>
+
+                        </div>
+
+                        <div class="submit-cont">
+                            <button type="submit" class="submit-button">Register</button>
+                            <button class="login-redirect">Login</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="login-container">
+                    <div class="login-title-cont">
+                        <span class="title">LOGIN</span>
+                    </div>
+                    
+                    <div class="login-form-cont">
+
+                        <form id="login-form">
+
+                            <div class="user-cont">
+                                <label for="username">User: </label>
+                                <input type="text" id="username" name="username" placeholder="Enter your user..." required>
+                            </div>
+    
+                            <div class="password-cont">
+                                <label for="password">Password: </label>
+                                <input type="password" id="password" name="password" placeholder="Enter your password..." required>
+                            </div>
+    
+                            <div class="submit-cont">
+                                <button type="submit" class="submit-button">Login</button>
+                                <button class="register-redirect">Register</button>
+                            </div>
+    
+                        </form>
+
+                    </div>
+
+                </div>
+                
+            </section>
+        </div>
+    </main>
+    <!-- Main end -->
+
+    <script src="../js/Login-Register/userValidation.js"></script>
+</body>
+</html>
