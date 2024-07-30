@@ -76,13 +76,16 @@ main{
     width: 100%;
 }
 
+.register-container,
 .login-container{
     width: 80%;
     margin: 0 auto;
     margin-top: 100px;
-    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.75); 
+    display: block;
 }
 
+.register-title-cont,
 .login-title-cont{
     width: 100%;
     background: var(--header-color);
@@ -90,29 +93,37 @@ main{
     padding: 10px 0;
 }
 
+.register-title-cont .title,
 .login-title-cont .title{
     color: var(--white-color);
     font-size: 1.5rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    letter-spacing: 2px;
 }
 
+.register-form-cont,
 .login-form-cont{
     padding: 10px 5px;
     background: var(--login-or-register-background);
 }
 
 
-
 .user-cont,
-.password-cont{
+.password-cont,
+.password-cont .password-user-cont,
+.password-cont .password-user-confirm-cont{
     display: flex;
     flex-direction: column;
     padding: 15px 5px;
 }
 
+#register-form .password-cont{
+    padding: 0;
+}
+
 .user-cont label,
-.password-cont label{
+.password-cont label{    
     font-size: 1.2rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 400;
@@ -146,10 +157,7 @@ main{
     background: var(--submit-hover);
 }
 
-.register-container{
-    display: none;
-}
-
+.login-redirect,
 .register-redirect{
     background: transparent;
     border: 0.05rem solid black;
@@ -160,8 +168,12 @@ main{
     transition: 0.2s all linear;
 }
 
+.login-redirect:hover,
 .register-redirect:hover{
     background: #000;
     color: var(--white-color);
 }
 
+.hide-form{
+    display: none;
+}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aniverse - Register</title>
     <link rel="stylesheet" href="../Css/LoginAndRegister/LoginRegister.css">
+    <script src="../node_modules/scrollreveal/dist/scrollreveal.js"></script>
 </head>
 <body>
     
@@ -28,33 +29,40 @@
         <div class="main-container">
             <section class="login-register-section">
                 
-                <div class="register-container">
+                <div class="register-container hide-form">
                     <div class="register-title-cont">
                         <span class="title">REGISTER</span>
                     </div>
-                    <form id="register-form">
 
-                        <div class="user-cont">
-                            <label for="username">User: </label>
-                            <input type="text" id="username" name="username" placeholder="Enter your user..." required>
-                        </div>
+                    <div class="register-form-cont">
+                        <form id="register-form">
 
-                        <div class="pasword-cont">
-                            
-                            <label for="password">Password: </label>
-                            <input type="password" id="password" name="password" placeholder="Enter your password..." required>
-
-                            <label for="confirm-password">Confirm password: </label>
-                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your user..." required>
-
-                        </div>
-
-                        <div class="submit-cont">
-                            <button type="submit" class="submit-button">Register</button>
-                            <button class="login-redirect">Login</button>
-                        </div>
-
-                    </form>
+                            <div class="user-cont">
+                                <label for="register-username">User: </label>
+                                <input type="text" id="register-username" name="register-username" placeholder="Enter your user..." required>
+                            </div>
+    
+                            <div class="password-cont">
+                                
+                               <div class="password-user-cont">
+                                    <label for="register-password">Password: </label>
+                                    <input type="password" id="register-password" name="register-password" placeholder="Enter your password..." required>
+                               </div>
+    
+                                <div class="password-user-confirm-cont">
+                                    <label for="register-confirm-password">Confirm password: </label>
+                                    <input type="password" id="register-confirm-password" name="register-confirm-password" placeholder="Confirm your user..." required>
+                                </div>
+    
+                            </div>
+    
+                            <div class="submit-cont">
+                                <button type="submit" class="submit-button">Register</button>
+                                <button class="login-redirect">Login</button>
+                            </div>
+    
+                        </form>
+                    </div>
                 </div>
 
                 <div class="login-container">
@@ -67,13 +75,13 @@
                         <form id="login-form">
 
                             <div class="user-cont">
-                                <label for="username">User: </label>
-                                <input type="text" id="username" name="username" placeholder="Enter your user..." required>
+                                <label for="login-username">User: </label>
+                                <input type="text" id="login-username" name="login-username" placeholder="Enter your user..." required>
                             </div>
     
                             <div class="password-cont">
-                                <label for="password">Password: </label>
-                                <input type="password" id="password" name="password" placeholder="Enter your password..." required>
+                                <label for="login-password">Password: </label>
+                                <input type="password" id="login-password" name="login-password" placeholder="Enter your password..." required>
                             </div>
     
                             <div class="submit-cont">
