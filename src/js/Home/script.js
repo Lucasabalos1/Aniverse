@@ -10,6 +10,8 @@ const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
 const randomSection = document.getElementById("recommendation-random-section");
 const formBtn = document.getElementById("send-button");
+const userId = localStorage.getItem("sesionActual");
+
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -272,4 +274,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     inicializePopularSection();
     inicializeUserListSection();
     generateAnimeRandom();
-})
+    
+    if (userId) {
+        document.querySelector(".link-cont").classList.toggle("hidden-toggle")
+        document.querySelector(".user-info-cont").classList.toggle("hidden-toggle")
+        
+    }
+});
