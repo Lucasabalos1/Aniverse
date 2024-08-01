@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Css/Universal/universalMobile.css">
+    <link rel="stylesheet" href="../Css/Universal/UniversalDesktop.css">
+    <link rel="stylesheet" href="../Css/animeSelected/animeControlerMobile.css">
+    <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
+</head>
+<body>
+
+     <!-- Start Header -->
+     <header>
+        <nav>
+             <!-- Mobile Header Start -->
+            <div class="nav-row">
+
+                <div class="logo-container">
+                    <h1>AniVerse</h1>
+                     <div class="logo-img-cont">
+                         <img src="../Images/Kintoun.webp" alt="Nube Voladora">
+                     </div>
+                 </div>
+  
+                 <button class="modal-button" aria-label="openModal">
+                     <i class="fa-solid fa-bars"></i>
+                 </button>
+ 
+            </div>
+            <!-- Mobile Header End -->
+
+            <!-- Desktop Header Start -->
+            <div class="nav-row-desk">
+
+                <div class="logo-container">
+                   <h1>AniVerse</h1>
+                    <div class="logo-img-cont">
+                        <img src="../Images/Kintoun.webp" alt="Nube Voladora">
+                    </div>
+                </div>
+
+                <ul class="ul_menu_lateral-desk">    
+                    <li>
+                        <a href="index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                    </li>
+                </ul>
+                    
+                <div class="search-container">
+                    <input type="search" placeholder="ingrese una serie...">
+                    <button class="search-button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <div class="login-cont">
+                    <div class="link-cont">
+                        <a href="Pages/LoginAndRegister.html">LOGIN</a>
+                    </div>
+                    <div class="user-info-cont hidden-toggle">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Desktop Header End -->
+             
+        </nav>
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Main -->
+    <!-- End Main -->
+
+     <!-- Start Footer -->
+     <footer>
+        <section class="footer-section">
+            <div class="footer-container">
+                <section class="form-section">
+                    <div class="text-contact-cont">
+                        <span> CONTACT ME </span>
+                    </div>
+                    <hr>
+                    <div class="form-container">
+                      <form id="form">
+        
+                        <div class="name-container">
+                          <label for="name-container">Nombre completo<b>*</b></label>
+                          <input type="text" name="from_name" id="name_input" placeholder="Ingrese su nombre" minlength="3" maxlength="48">
+                        </div>
+        
+                        <div class="email-container">
+                          <label for="email-container">Email<b>*</b></label>
+                          <input type="email" name="email_id" id="email_input" placeholder="Ingrese su mail" minlength="12" maxlength="48">
+                        </div>
+        
+                        <div class="message-container">
+                          <label for="message-container">Mensaje<b>*</b></label>
+                          <textarea name="message" id="message_input" rows="6" cols="30" placeholder="Redacte su mensaje" minlength="20"></textarea>
+                        </div>
+        
+                        <div class="button-container">
+                          <input type="submit" id="send-button" value="ENVIAR EMAIL">
+                        </div>
+        
+                      </form>
+                    </div>
+                </section>
+
+                <ul class="footer_ul">
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">ADVANCE SEARCH</a></li>
+                </ul>
+            </div>
+        </section>
+        <div class="credits-cont">
+            <span>&copy; 2024 Lucas Abalos. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Modal Start -->
+    <div class="modal-menu-container" id="modal-menu-container">
+        <div class="menu-lateral-container" >
+            <div class="superior-buttons">
+                <button id="change-of-colors-button"></button>
+                <button id="close-modal-button" aria-label="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" placeholder="ingrese una serie...">
+                <button class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <ul class="ul_menu_lateral">
+                <li class="login-cont">
+                    <div class="link-cont-mobile">
+                        <a href="Pages/LoginAndRegister.html">LOGIN</a>
+                    </div>
+                    <div class="user-info-cont-mobile hidden-toggle">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                </li>
+            </ul>
+
+            <div class="genders-container">
+                <div class="tittle-container">
+                    <span>SEARCH FOR GENDERS</span>
+                </div>
+                
+                <hr>
+                
+                <ul class="ul_genders">
+                    <li>
+                        <a href="">Action</a>
+                    </li>
+                    <li>
+                        <a href="">Adventure</a>
+                    </li>
+                    <li>
+                        <a href="">Awant Garde</a>
+                    </li>
+                    <li>
+                        <a href="">Award Winning</a>
+                    </li>
+                    <li>
+                        <a href="">Boys Love</a>
+                    </li>
+                    <li>
+                        <a href="">Comedy</a>
+                    </li>
+                    <li>
+                        <a href="">Drama</a>
+                    </li>
+                    <li>
+                        <a href="">Fantasy</a>
+                    </li>
+                    <li>
+                        <a href="">Girls Love</a>
+                    </li>
+                    <li>
+                        <a href="">Gourment</a>
+                    </li>
+                    <li>
+                        <a href="">Horror</a>
+                    </li>
+                    <li>
+                        <a href="">Mystery</a>
+                    </li>
+                    <li>
+                        <a href="">Romance</a>
+                    </li>
+                    <li>
+                        <a href="">Sci-Fi</a>
+                    </li>
+                    <li>
+                        <a href="">Slice of life</a>
+                    </li>
+                    <li>
+                        <a href="">Sports</a>
+                    </li>
+                    <li>
+                        <a href="">Supernatural</a>
+                    </li>
+                    <li>
+                        <a href="">Suspense</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+    
+    <!-- Scripts Start -->
+
+    <script src="../js/animeSelected/anime.js"></script>
+
+    <!-- Scripts End -->
+</body>
+</html>
