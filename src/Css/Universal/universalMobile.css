@@ -204,12 +204,7 @@ nav{
     padding: 20px 0 ;
 }
 
-.ul_menu_lateral li:first-child a{
-    background: var(--login-button);
-    border-radius: 10px;
-    padding: 5px 15px;
-    border: 1px solid var(--header-color);
-}
+
 
 .ul_menu_lateral li a{
     color:#E4E4E4;
@@ -404,4 +399,31 @@ label b {
 
 .credits-cont span{
     font-size: .9rem;
+}
+
+.login-cont,
+.link-cont{
+    display: grid;
+    place-items: start;
+}
+
+.user-info-cont-mobile{
+    background: var(--login-button);
+    border-radius: 50%;
+    padding: 10px 15px;
+    border: 1px solid var(--header-color);
+}
+
+.link-cont-mobile a{
+    background: var(--login-button);
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid var(--header-color);
+    color: var(--white-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.hidden-toggle{
+    display: none;
 }

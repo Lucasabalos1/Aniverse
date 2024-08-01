@@ -12,6 +12,34 @@ const randomSection = document.getElementById("recommendation-random-section");
 const formBtn = document.getElementById("send-button");
 const userId = localStorage.getItem("sesionActual");
 
+const inicializeAnimation = () => {
+
+    window.sr = ScrollReveal();
+
+    sr.reveal("header", {
+        duration:500,
+        origin: `bottom`,
+        distance: `-100px`
+    })
+
+    sr.reveal(swiperWelcomeWrapper, {
+        duration: 1000,
+        scale: 0.9
+    })
+
+    sr.reveal(".anime-popular-container", {
+        duration: 1000,
+        origin: `left`,
+        distance: `-100px`
+    })
+
+    sr.reveal(".user-animes-container", {
+        duration: 1000,
+        origin: `right`,
+        distance: `-100px`
+    })
+}
+
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -274,10 +302,11 @@ document.addEventListener("DOMContentLoaded", () =>{
     inicializePopularSection();
     inicializeUserListSection();
     generateAnimeRandom();
-    
+    inicializeAnimation();
     if (userId) {
-        document.querySelector(".link-cont").classList.toggle("hidden-toggle")
-        document.querySelector(".user-info-cont").classList.toggle("hidden-toggle")
-        
+        document.querySelector(".link-cont").classList.toggle("hidden-toggle");
+        document.querySelector(".user-info-cont").classList.toggle("hidden-toggle");
+        document.querySelector(".link-cont-mobile").classList.toggle("hidden-toggle");
+        document.querySelector(".user-info-cont-mobile").classList.toggle("hidden-toggle");
     }
 });

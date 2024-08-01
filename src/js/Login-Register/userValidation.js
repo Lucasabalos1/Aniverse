@@ -23,19 +23,22 @@ const inicializeAnimations = () => {
 }
 
 submitRegisterBtn.addEventListener("click", (event) => {
-    // event.preventDefault();
+    const registerForm = document.getElementById("register-form");
 
+    if (!registerForm.checkValidity()) {
+        registerForm.reportValidity(); 
+        event.preventDefault(); 
+        return;
+    }
+    
     let storageData = JSON.parse(localStorage.getItem("users")) || { usuarios: [] };
-
     const getUser = document.getElementById("register-username").value;
     const getPassword = document.getElementById("register-password").value;
     const getconfirmPassword = document.getElementById("register-confirm-password").value;
-    
-    if (!getUser || !getPassword || !getconfirmPassword) {
-        return;
-    }
+
     if (getPassword != getconfirmPassword) {
         alert("las contraseñas no son iguales");
+        event.preventDefault(); 
         return;
     }
     
@@ -43,6 +46,14 @@ submitRegisterBtn.addEventListener("click", (event) => {
         id: storageData.usuarios.length + 1,
         user: getUser,
         password: getPassword
+    }
+
+    const userFound = storageData.usuarios.find(user => user.user === getUser && user.password === getPassword);
+
+    if (userFound) {
+        alert("El usuario ya existe")
+        event.preventDefault();
+        return;
     }
 
     storageData.usuarios.push(userRegister);
@@ -54,7 +65,13 @@ submitRegisterBtn.addEventListener("click", (event) => {
 });
 
 submitLoginBtn.addEventListener("click", (event) => {
-    // event.preventDefault();
+    const loginForm = document.getElementById("login-form");
+
+    if (!loginForm.checkValidity()) {
+        loginForm.reportValidity(); 
+        event.preventDefault(); 
+        return;
+    }
 
     let storageData = JSON.parse(localStorage.getItem("users"));
 
@@ -65,12 +82,25 @@ submitLoginBtn.addEventListener("click", (event) => {
     if(userFound){
         console.log("sesion iniciada");
         localStorage.setItem("sesionActual" ,userFound.id)
+        event.preventDefault();
         location.href = "../index.html"
     }else{
-        console.log("no inicio sesion");
+        console.log("El usuario no existe");
     }
 });
 
+
+const inputControler = () => {
+    const getInputPassword = document.getElementById("register-password"); 
+    const getInputPasswordConfirm = document.getElementById("register-confirm-password");
+    const getColor = (getInputPassword.value != getInputPasswordConfirm.value) ? "#FF0000" : "#008000";
+    
+    getInputPasswordConfirm.style.border = `1px solid ${getColor}`
+    getInputPassword.style.border = `1px solid ${getColor}`;
+}
+
+document.getElementById("register-password").addEventListener("input", inputControler);
+document.getElementById("register-confirm-password").addEventListener("input", inputControler);
 
 document.addEventListener("DOMContentLoaded", inicializeAnimations)
 
@@ -83,14 +113,3 @@ registerRedirectBtn.addEventListener("click", (event) => {
     event.preventDefault()
     toggleForms()
 });
-
-/*
-
-Cosas a arreglar:
-
--validar contraseña con minimo
--validar que sean iguales, una vez hecho que recien se pueda realizar el envio
--verificar que no exista el usuario en el register
--verificar que el usuario exista en el login
-
-*/
