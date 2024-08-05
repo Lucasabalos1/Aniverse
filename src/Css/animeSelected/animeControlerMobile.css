@@ -79,7 +79,7 @@ main{
 .studio-cont span{
     font-size: 1.1rem;
     color: var(--letter-background);
-    font-weight: 700;
+    font-weight: 200;
 }
 
 .buttons-cont{
@@ -92,7 +92,7 @@ main{
     background: var(--plus-container);
     border: 1px solid #111;
     padding: 4px 8px;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 .logo .fa-heart{
@@ -124,6 +124,7 @@ main{
     border-radius: 5px; 
     cursor: pointer; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1px;
 }
 
 .anime-info-middle-section{
@@ -348,5 +349,4 @@ main{
     height: 100%;
 }
 
-/* Arreglar bug de los botones en el principio para mobile*/
-
+/* Agregar estilos para el modal de personajes */
