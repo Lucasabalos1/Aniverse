@@ -175,12 +175,12 @@ const inicializeSwipperUserList = () => {
 const inicializeUserListSection = () => {
     //To-do: Falta la logica en la que toma las series dependiendo el id del usuario y las muestra
     
-    let storageData = JSON.parse(localStorage.getItem("series"));
+    let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
     
     if (!storageData) {
         showMessageEmptyList();
     }
-
+    
     inicializeSwipperUserList()
 }
 

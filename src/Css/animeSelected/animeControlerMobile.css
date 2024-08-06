@@ -99,11 +99,16 @@ main{
     transition: 0,5s color linear;
 }
 
+
 .red-heart{
     color: #f00;
 }
 
 .score-input-cont{
+    display: none;
+}
+
+.add-favorites{
     display: flex;
 }
 
@@ -165,6 +170,7 @@ main{
 .synopsis{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 0.9rem;
+    margin-bottom: 30px;
 }
 
 .button-expasion{
@@ -180,23 +186,14 @@ main{
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 65%);
 }
 
-.button-expasion i{
+.button-expasion .fa-arrow-right{
     transform: rotateZ(90deg);
+    transition: 0.2s all linear;
 }
 
-.synopsis-paragraph-cont.show-acordion{
+.show-acordion{
     height: 100%;
 }
-
-.synopsis.show-acordion{
-    margin-bottom: 30px;
-}
-
-.button-expasion i.show-acordion{
-    transform: rotateZ(270deg);
-}
-
-
 
 .more-info-cont{
     width: 100%;
