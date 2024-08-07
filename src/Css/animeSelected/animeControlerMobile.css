@@ -161,10 +161,10 @@ main{
 .synopsis-paragraph-cont{
     width: 100%;
     margin-top: 10px;
-    height: 200px;
+    max-height: 100px;
     overflow: hidden;
     position: relative;
-    transition: 0.5s all linear;
+    transition: all 0.5s linear;
 }
 
 .synopsis{
@@ -191,8 +191,8 @@ main{
     transition: 0.2s all linear;
 }
 
-.show-acordion{
-    height: 100%;
+.synopsis-paragraph-cont.show-acordion{
+    max-height: 1000px;
 }
 
 .more-info-cont{
@@ -278,6 +278,10 @@ main{
     display: flex;
 }
 
+.character-id{
+    display: none;
+}
+
 .character-image-cont{
     width: 40%;
     height: 100px;
@@ -346,4 +350,94 @@ main{
     height: 100%;
 }
 
+.modal-galery-container{
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto; 
+    transition: opacity 0.3s linear;
+    z-index: 1;
+}
+
+.visible{
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-character-container{
+    width: 100%;
+}
+
+.button-close-cont{
+    width: 100%;
+    padding: 10px;
+    text-align: end;
+}
+
+.close-character-btn{
+    font-size: 1.2rem;
+    padding: 2px 5px;
+    background: var(--white-color);
+    color: var(--black-color);;
+    border: none;
+}
+
+.galery-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.swiper {
+  width: 50%;
+  height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-character{
+    width: 90%;
+    margin: 0 auto;
+    background-image: url("https://img.freepik.com/foto-gratis/papel-papiro-marron_53876-14519.jpg?w=740&t=st=1722990983~exp=1722991583~hmac=af0bb65742dbb60a3eeaed63ba0c7d48ce38dd2a36a00fab5bc18e6bab0f491c");
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.info-character-cont{
+    padding: 10px 0;
+    width: 100%;
+}
+
+.info-character-text{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #232323;
+}
+
+b{
+    color: var(--black-color);
+}
 /* Agregar estilos para el modal de personajes */

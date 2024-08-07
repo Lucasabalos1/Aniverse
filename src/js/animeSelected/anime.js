@@ -256,6 +256,8 @@ const drawCharacterCard = (serie) => {
 
     character.innerHTML = `
                             <div class="anime-character-cont">
+                                <div class="character-id">${serie.character.mal_id}</div>
+
                                 <div class="character-image-cont">
                                     <img src="${serie.character.images["webp"].image_url}" alt="character-image">
                                 </div>
@@ -293,6 +295,116 @@ const loadInfoSection = async (serieId) => {
     }
 }
 
+const toggleCharacterModal = () =>{
+    const modalCharacterCont = document.getElementById("modal-galery-container");
+
+    modalCharacterCont.classList.toggle("visible");
+
+    document.body.style.overflow = (modalCharacterCont.classList.contains("visible") ? "hidden" : "scroll");
+}
+
+
+const drawSwipperGalery = async(url) =>{
+    try {
+        let response = await fetch(url)
+
+        let data = await response.json();
+
+        const swiperGallery = document.querySelector(".swiper-wrapper");
+
+        swiperGallery.innerHTML = "";
+
+        for (let index = 0; index < data.data.length; index++) {
+            let slide = document.createElement("DIV");
+
+            slide.classList.add("swiper-slide");
+
+            slide.innerHTML = `<img src="${data.data[index].jpg.image_url}" alt="character-image">`
+
+            swiperGallery.appendChild(slide);
+        }
+
+        let swiper = new Swiper(".mySwiper", {
+            autoplay:{
+                duration:1500,
+                disableOnInteraction:false
+            },
+            simulateTouch: false,
+        });
+        
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const drawCharacterInfo = async(url) => {
+    try {
+        let response = await fetch(url)
+
+        let data = await response.json();
+
+        const infoContainer = document.querySelector(".info-character-container");
+
+        let info = document.createElement("DIV");
+
+        info.classList.add("info-character")
+
+        info.innerHTML = `
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Name:</b> Brook</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Age:</b> 88-90</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Birthdate:</b> April</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Height:</b> 2m 66cm</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Affiliation:</b> Straw Hat Pirates (previously; Rumbar Pirates)</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Position:</b> Musician, Swordsman</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Devil Fruit:</b> Yomi Yomi no Mi (Revive Revive Fruit)</span>
+                </div>
+                <div class="info-character-cont">
+                    <span class="info-character-text"><b>Type:</b> Paramecia</span>
+                </div>
+        `
+
+        infoContainer.appendChild(info);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const createCharacterModal = (characterId) =>{
+    const urlCharacterInfo = `https://api.jikan.moe/v4/characters/${characterId}`
+    const urlPictures = `https://api.jikan.moe/v4/characters/${characterId}/pictures`;
+
+    toggleCharacterModal();
+
+    drawSwipperGalery(urlPictures);
+    drawCharacterInfo(urlCharacterInfo);
+    document.querySelector(".close-character-btn").addEventListener("click", toggleCharacterModal)
+
+}
+
+const inicializeCharacters = (characters) =>{
+
+    characters.forEach((characterSelected) => {
+        characterSelected.addEventListener("click", () => {
+            const characterId = characterSelected.firstElementChild.innerHTML;
+            createCharacterModal(characterId)
+        });
+    });
+}
+
 const loadCharacterSection = async (serieId) => {
     try {
         const url = `https://api.jikan.moe/v4/anime/${serieId}/characters`
@@ -306,10 +418,13 @@ const loadCharacterSection = async (serieId) => {
         for (let index = 0; index < dataLimited.length; index++) {
             drawCharacterCard(dataLimited[index])
         }
+
+        const getAllCharacters = document.querySelectorAll(".anime-character-cont")
+
+        inicializeCharacters(getAllCharacters);
     } catch (error) {
         console.log(error);    
     }
-
 }
 
 const loadInfo = () => {
@@ -319,12 +434,10 @@ const loadInfo = () => {
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
-
-document.addEventListener("DOMContentLoaded", loadInfo())
+document.addEventListener("DOMContentLoaded", loadInfo)
 
 /*
 
--agregar logica para abrir modal 
 
 -agregar logica para mostrar los datos en el modal
 

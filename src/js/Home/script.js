@@ -310,3 +310,9 @@ document.addEventListener("DOMContentLoaded", () =>{
         document.querySelector(".user-info-cont-mobile").classList.toggle("hidden-toggle");
     }
 });
+
+/* Separa lo que se usa globalmente en un js aparte como el envio de emails y el modal del submenu 
+   Agregarles un id a las series que este oculto
+   Agregar logica para redirigir a la pagina de una serie
+   Cargar las series favoritas del usuario
+*/
