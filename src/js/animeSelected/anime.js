@@ -11,7 +11,7 @@ const getSerieId = localStorage.getItem("idSerieActual");
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
     lateralMenu.classList.toggle("visible-menu");
-    document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll")
+    document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll");
 }
 
 const toggleAcordion = () => {
@@ -46,6 +46,23 @@ const createSerie = async(serieId) =>{
         }
 }
 
+const verifySerieInclude = () => {
+    let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
+
+    if(!storageData){
+        return;
+    }
+
+    let user = storageData.usuarios.find(u => u.user_id === userId);
+
+    let isSerieExists = user.series.some(s => s.serie_id === parseInt(getSerieId));
+
+    if (isSerieExists) {
+        toggleFavoriteButton();
+    }
+
+}
+
 const addFavorites = async () => {
     let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario")) || {usuarios:[]};
     
@@ -65,14 +82,14 @@ const addFavorites = async () => {
     const isSerieIncluded = user.series.some(serie => serie.serie_id === getSerie.serie_id);
 
     if (isSerieIncluded) {
-        toggleFavoriteButton();
-        // Lógica para eliminar la serie ya incluida
         let index = user.series.findIndex(serie => serie.serie_id === getSerie.serie_id);
+ 
         if (index !== -1) {
             user.series.splice(index, 1);
         }
 
         localStorage.setItem("seriesPorUsuario", JSON.stringify(storageData));
+        toggleFavoriteButton();
         return;
     }
 
@@ -82,7 +99,6 @@ const addFavorites = async () => {
 
     toggleFavoriteButton();
 }
-
 
 const submitScore = () =>{
     const getScore = document.getElementById("score-input").value;
@@ -163,6 +179,7 @@ const drawSuperiorSection = (serie) => {
     document.querySelector(".favorite-button").addEventListener("click", addFavorites);
     document.querySelector(".submit-score").addEventListener("click", submitScore);
         
+    verifySerieInclude()
 }
 
 const drawMiddleSection = (serie) =>{
@@ -269,11 +286,11 @@ const drawCharacterCard = (serie) => {
 
                             <div class="seiyuu-cont">
                                 <div class="seiyuu-data">
-                                    <span class="seiyuu-name">${serie.voice_actors[0].person.name}</span>
-                                    <span class="seiyuu-nationality">${serie.voice_actors[0].language}</span>
+                                    <span class="seiyuu-name">${(serie.voice_actors.length > 0) ? serie.voice_actors[0].person.name : ""}</span>
+                                    <span class="seiyuu-nationality">${(serie.voice_actors.length > 0) ? serie.voice_actors[0].language : ""}</span>
                                 </div>
                                 <div class="seiyuu-image-cont">
-                                    <img src="${serie.voice_actors[0].person.images["jpg"].image_url}" alt="seiyuu-image">
+                                    <img src="${(serie.voice_actors.length > 0) ? serie.voice_actors[0].person.images["jpg"].image_url : ""}" alt="seiyuu-image">
                                 </div>
                             </div>
     `
@@ -302,7 +319,6 @@ const toggleCharacterModal = () =>{
 
     document.body.style.overflow = (modalCharacterCont.classList.contains("visible") ? "hidden" : "scroll");
 }
-
 
 const drawSwipperGalery = async(url) =>{
     try {
@@ -387,10 +403,9 @@ const createCharacterModal = (characterId) =>{
     const urlCharacterInfo = `https://api.jikan.moe/v4/characters/${characterId}`
     const urlPictures = `https://api.jikan.moe/v4/characters/${characterId}/pictures`;
 
-    toggleCharacterModal();
-
     drawSwipperGalery(urlPictures);
     drawCharacterInfo(urlCharacterInfo);
+    toggleCharacterModal();
     document.querySelector(".close-character-btn").addEventListener("click", toggleCharacterModal)
 
 }
@@ -405,7 +420,7 @@ const inicializeCharacters = (characters) =>{
     });
 }
 
-const loadCharacterSection = async (serieId) => {
+const loadCharacterSection = async (serieId,start,end) => {
     try {
         const url = `https://api.jikan.moe/v4/anime/${serieId}/characters`
 
@@ -413,7 +428,7 @@ const loadCharacterSection = async (serieId) => {
 
         let data = await response.json();
 
-        let dataLimited = (data.data.length < 10) ? data.data.slice(0,data.data.length) : data.data.slice(0,10); 
+        let dataLimited = data.data.slice(start, end); 
 
         for (let index = 0; index < dataLimited.length; index++) {
             drawCharacterCard(dataLimited[index])
@@ -429,20 +444,22 @@ const loadCharacterSection = async (serieId) => {
 
 const loadInfo = () => {
     loadInfoSection(getSerieId);
-    loadCharacterSection(getSerieId);
+    loadCharacterSection(getSerieId, 0, 10);
+}
+
+const loadMoreCharacters = () =>{
+
+    const init = document.querySelectorAll(".character").length;
+    loadCharacterSection(getSerieId,init, init+10)
 }
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
-document.addEventListener("DOMContentLoaded", loadInfo)
+document.addEventListener("DOMContentLoaded",loadInfo);
+document.querySelector(".more-character-btn").addEventListener("click", loadMoreCharacters);
 
 /*
-
-
 -agregar logica para mostrar los datos en el modal
-
-
 A futuro: 
--agregar un boton para mostrar otros 10 personajes 
--agregar que si la serie esta agregada, aparezcan ya los botones de favoritos con los estilos correspondientes al actualizar la pagina
+-optimizar el codigo para que no se repita
 */

@@ -350,6 +350,29 @@ main{
     height: 100%;
 }
 
+.more-character-cont{
+    width: 100%;
+    margin-top: 10px;
+    display: grid;
+    place-items: center;
+}
+
+.more-character-btn{
+    background: var(--black-color);
+    color: var(--white-color);
+    padding: 8px 15px;
+    font-size: 1.1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 4px;
+    border: 1px solid #333;
+    transition: 0.3s all linear;
+}
+
+.more-character-btn:hover{
+    background: var(--white-color);
+    color: var(--black-color);
+}
+
 .modal-galery-container{
     display: block;
     position: fixed;
