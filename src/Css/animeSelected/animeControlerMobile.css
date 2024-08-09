@@ -170,7 +170,9 @@ main{
 .synopsis{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 0.9rem;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    white-space: pre-wrap;
+    text-indent: 0;
 }
 
 .button-expasion{
@@ -448,9 +450,13 @@ main{
     padding: 10px;
 }
 
-.info-character-cont{
-    padding: 10px 0;
+.character-data-cont{
     width: 100%;
+}
+
+.info-character-cont{
+    width: 100%;
+    padding: 10px 0;
 }
 
 .info-character-text{

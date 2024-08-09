@@ -8,6 +8,7 @@ const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
+const swiperUserListWrapper = document.getElementById("swiper-user-list-wrapper")
 const randomSection = document.getElementById("recommendation-random-section");
 const formBtn = document.getElementById("send-button");
 const userId = localStorage.getItem("sesionActual");
@@ -110,7 +111,8 @@ const inicializeWelcomeSection = async () => {
             drawInWelcome(data.data, descriptionSeries[index])
             
         } catch (error) {
-            console.log("La api fallo")
+            console.log(error);
+            index = index - 1;
         }
     }
     inicializeSwipper();
@@ -179,6 +181,29 @@ const inicializeUserListSection = () => {
     
     if (!storageData) {
         showMessageEmptyList();
+    }
+
+    const user = storageData.usuarios.find(u => u.user_id === userId);
+
+    const getSeries = user.series;
+
+    console.log(getSeries)
+    for (let index = 0; index < getSeries.length; index++) {
+        let slide = document.createElement("DIV");
+
+        slide.classList.add("swiper-slide");
+
+        slide.innerHTML = `
+        <a href="">
+            <div class="image-swiper-cont">
+                <img src="${getSeries[index].image}" alt="popular-image">
+                <div class="anime-title-cont">
+                    <span class="anime-title">${getSeries[index].name}</span>
+                </div>
+            </div>
+        </a>
+        `
+        swiperUserListWrapper.appendChild(slide);
     }
     
     inicializeSwipperUserList()
@@ -314,5 +339,5 @@ document.addEventListener("DOMContentLoaded", () =>{
 /* Separa lo que se usa globalmente en un js aparte como el envio de emails y el modal del submenu 
    Agregarles un id a las series que este oculto
    Agregar logica para redirigir a la pagina de una serie
-   Cargar las series favoritas del usuario
+   Arreglar los bugs de las llamadas a la api
 */

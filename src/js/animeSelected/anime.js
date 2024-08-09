@@ -7,6 +7,8 @@ const infoMiddleSection = document.getElementById("anime-info-middle-section");
 const infoInferiorSection = document.getElementById("characters-cont");
 const userId = localStorage.getItem("sesionActual");
 const getSerieId = localStorage.getItem("idSerieActual");
+let swiper;
+
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -196,9 +198,7 @@ const drawMiddleSection = (serie) =>{
                         <hr>
     
                         <div class="synopsis-paragraph-cont">
-                            <p class="synopsis">
-                                ${(serie.synopsis != null) ? serie.synopsis  : "?"}
-                            </p>
+                            <p class="synopsis">${(serie.synopsis != null) ? serie.synopsis  : "?"}</p>
                             <div class="button-expasion">
                                 <i class="fa-solid fa-arrow-right "></i>
                             </div>
@@ -263,7 +263,7 @@ const drawMiddleSection = (serie) =>{
 
     infoMiddleSection.appendChild(infoMiddleContainer);
 
-    document.querySelector(".button-expasion").addEventListener("click", toggleAcordion)
+    document.querySelector(".button-expasion").addEventListener("click", toggleAcordion);
 }
 
 const drawCharacterCard = (serie) => {
@@ -340,9 +340,13 @@ const drawSwipperGalery = async(url) =>{
             swiperGallery.appendChild(slide);
         }
 
-        let swiper = new Swiper(".mySwiper", {
+        if (swiper) {
+            swiper.destroy(true, true);
+        }
+
+        swiper = new Swiper(".mySwiper", {
             autoplay:{
-                duration:1500,
+                delay:1500,
                 disableOnInteraction:false
             },
             simulateTouch: false,
@@ -354,46 +358,62 @@ const drawSwipperGalery = async(url) =>{
     }
 }
 
-const drawCharacterInfo = async(url) => {
+const constructNewString = (about, str) => {
+    
+    const regex = new RegExp(`${str}\\s*([\\d\\s,]+)`);
+    
+    let match = about.match(regex);
+
+    console.log(match);
+
+    return match ? match[1].trim() : 'No data';
+}
+
+const drawCharacterInfo = async(url) => {   
     try {
         let response = await fetch(url)
 
         let data = await response.json();
 
-        const infoContainer = document.querySelector(".info-character-container");
+        const dataCharacterContainer = document.querySelector(".character-data-cont");
+
+        dataCharacterContainer.innerHTML = "";
 
         let info = document.createElement("DIV");
 
-        info.classList.add("info-character")
+        info.classList.add("info-character");
+
+        let about = data.data.about;
 
         info.innerHTML = `
+        
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Name:</b> Brook</span>
+                    <span class="info-character-text"><b>Name:</b> ${data.data.name}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Age:</b> 88-90</span>
+                    <span class="info-character-text"><b>Age:</b> ${constructNewString(about,"Age:")}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Birthdate:</b> April</span>
+                    <span class="info-character-text"><b>Birthdate:</b> ${constructNewString(about,"Birthdate:")}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Height:</b> 2m 66cm</span>
+                    <span class="info-character-text"><b>Height:</b> ${constructNewString(about,"Height:")}cm</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Affiliation:</b> Straw Hat Pirates (previously; Rumbar Pirates)</span>
+                    <span class="info-character-text"><b>Affiliation:</b> ${constructNewString(about,"Affiliation:")}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Position:</b> Musician, Swordsman</span>
+                    <span class="info-character-text"><b>Position:</b> ${constructNewString(about,"Position:")}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Devil Fruit:</b> Yomi Yomi no Mi (Revive Revive Fruit)</span>
+                    <span class="info-character-text"><b>Devil Fruit:</b> ${constructNewString(about,"Devil Fruit:")}</span>
                 </div>
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Type:</b> Paramecia</span>
+                    <span class="info-character-text"><b>Type:</b> ${constructNewString(about,"Type:")}</span>
                 </div>
         `
 
-        infoContainer.appendChild(info);
+        dataCharacterContainer.appendChild(info);
     } catch (error) {
         console.log(error)
     }
@@ -459,7 +479,8 @@ document.addEventListener("DOMContentLoaded",loadInfo);
 document.querySelector(".more-character-btn").addEventListener("click", loadMoreCharacters);
 
 /*
--agregar logica para mostrar los datos en el modal
+-Arreglar bug para obtener los datos de la info
+-Arreglar bug que no carga la series sugun X ids
 A futuro: 
 -optimizar el codigo para que no se repita
 */
