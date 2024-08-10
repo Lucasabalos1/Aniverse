@@ -41,7 +41,6 @@ const inicializeAnimation = () => {
     })
 }
 
-
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
     lateralMenu.classList.toggle("visible-menu");
@@ -71,22 +70,23 @@ const inicializeSwipper = () => {
     });
 }
 
-const drawInWelcome = (serie, description) => {
+const drawInWelcome = (serie, serieId) => {
 
     let slide = document.createElement("DIV");
 
     slide.classList.add("swiper-slide");
     
     slide.innerHTML = `
+         <div class="anime-id">${serieId}</div>
          <img src="${serie.images["webp"].large_image_url}" alt="anime-image">
          <div class="more-info-button-cont">
-            <button class="more-info-button"><a href="">More Information</a></button>
+            <button class="more-info-button">More Information</button>
          </div>
          <div class="serie-name-cont">
             <span class="serie-name">${serie.title.toUpperCase()}</span>
          </div>
          <div class ="serie-descr-cont">
-            <span class = "description">${description}</span>
+            <span class = "description">${serie.synopsis}</span>
          </div>
     `
     swiperWelcomeWrapper.appendChild(slide);
@@ -95,20 +95,14 @@ const drawInWelcome = (serie, description) => {
 const inicializeWelcomeSection = async () => {
     
     const welcomeSeries = [41467,813,21,20];
-    const descriptionSeries = [
-        "Sigue a Ichigo Kurosaki, un adolescente que puede ver fantasmas. Su vida cambia cuando conoce a Rukia Kuchiki, una Segadora de Almas, y recibe sus poderes para proteger a su familia de un Hollow, un espíritu maligno. Ahora, como un Segador de Almas sustituto, Ichigo debe defender a los vivos y a los muertos, enfrentando a poderosos enemigos y desentrañando secretos del mundo espiritual.",
-        "Sigue las aventuras de Goku, un poderoso guerrero Saiyajin, y sus amigos mientras defienden la Tierra de amenazas cósmicas. A lo largo de la serie, Goku y sus aliados enfrentan a enemigos formidables como Vegeta, Freezer, Cell y Majin Buu. La serie destaca por sus intensas batallas, transformaciones épicas y la búsqueda de las esferas del dragón, que pueden conceder cualquier deseo.",
-        "Sigue a Monkey D. Luffy, un joven pirata con habilidades elásticas tras comer una Fruta del Diablo. Junto a su tripulación, los Piratas del Sombrero de Paja, Luffy navega en busca del legendario tesoro One Piece para convertirse en el Rey de los Piratas. En su travesía, enfrentan peligros y enemigos mientras exploran el vasto mar de la Gran Línea.",
-        "Sigue la historia de Naruto Uzumaki, un joven ninja con el sueño de convertirse en el Hokage, el líder de su aldea. A pesar de ser rechazado y solitario debido al demonio zorro de nueve colas sellado dentro de él, Naruto lucha por ganarse el respeto de los demás y demostrar su valía. A lo largo de su viaje, forma profundas amistades, enfrenta peligrosos enemigos y enfrenta desafíos personales mientras busca alcanzar su sueño y proteger a sus seres queridos."
-    ]
-
+  
     for (let index = 0; index < welcomeSeries.length; index++) {
         try {
             let response = await fetch(`https://api.jikan.moe/v4/anime/${welcomeSeries[index]}`)
             
             let data =  await response.json();
                         
-            drawInWelcome(data.data, descriptionSeries[index])
+            drawInWelcome(data.data, welcomeSeries[index])
             
         } catch (error) {
             console.log(error);
@@ -138,7 +132,8 @@ const drawPopularAnime = (series) => {
         slide.classList.add("swiper-slide");
         
         slide.innerHTML = `
-        <a href="">
+        <a class="popular-anime" href="">
+            <div class="anime-id">${serie.mal_id}</div>
             <div class="image-swiper-cont">
                 <img src="${serie.images["webp"].large_image_url}" alt="popular-image">
                 <div class="anime-title-cont">
@@ -148,6 +143,15 @@ const drawPopularAnime = (series) => {
         </a>
         `
         swiperPopularWrapper.appendChild(slide);
+    });
+
+    const popularAnimes = document.querySelectorAll(".popular-anime");
+
+    popularAnimes.forEach((popularAnime) => {
+        popularAnime.addEventListener("click", (event) => {
+            event.preventDefault();
+            redirectUser(popularAnime);
+        });
     });
 }
 
@@ -160,6 +164,7 @@ const inicializePopularSection = async () => {
         console.log("La api fallo");
     }
     inicializeSwipperPopular();
+    console.log("listo popular section")
 }
 
 const inicializeSwipperUserList = () => {
@@ -174,6 +179,12 @@ const inicializeSwipperUserList = () => {
       });
 }
 
+const redirectUser = (serie) => {
+    const getId = serie.querySelector(".anime-id").textContent.trim();
+    localStorage.setItem("idSerieActual", getId);
+    window.location.href = "../Pages/animeSelected.html";   
+}
+
 const inicializeUserListSection = () => {
     //To-do: Falta la logica en la que toma las series dependiendo el id del usuario y las muestra
     
@@ -181,20 +192,23 @@ const inicializeUserListSection = () => {
     
     if (!storageData) {
         showMessageEmptyList();
+        return;
     }
 
     const user = storageData.usuarios.find(u => u.user_id === userId);
 
     const getSeries = user.series;
 
-    console.log(getSeries)
-    for (let index = 0; index < getSeries.length; index++) {
+    const getSerieLength = (getSeries.length <= 10 ? getSeries.length : 9)
+
+    for (let index = 0; index < getSerieLength; index++) {
         let slide = document.createElement("DIV");
 
         slide.classList.add("swiper-slide");
 
         slide.innerHTML = `
-        <a href="">
+        <a class="user-series" href="">
+            <div class="anime-id">${getSeries[index].serie_id}</div>
             <div class="image-swiper-cont">
                 <img src="${getSeries[index].image}" alt="popular-image">
                 <div class="anime-title-cont">
@@ -205,8 +219,15 @@ const inicializeUserListSection = () => {
         `
         swiperUserListWrapper.appendChild(slide);
     }
+    inicializeSwipperUserList();
+    const serieList = document.querySelectorAll(".user-series");
     
-    inicializeSwipperUserList()
+    serieList.forEach((serie => {
+        serie.addEventListener("click", (event) => {
+            event.preventDefault();
+            redirectUser(serie);
+        })
+    }))
 }
 
 const drawAnimeRandom = (serie) => {
@@ -219,7 +240,7 @@ const drawAnimeRandom = (serie) => {
     randomContainer.classList.add("recommendation-random-container");
     
     randomContainer.innerHTML = `
-    
+        <div class="anime-id">${serie.mal_id}</div>
         <div class="anime-background-image">
             <img src="${serie.images["webp"].large_image_url}" alt="random-anime-background">
         </div>
@@ -248,19 +269,20 @@ const drawAnimeRandom = (serie) => {
                     <button id="more-info-anime">More info</button>
                 </div>
             </div>
-
         </div>
-    
     `
     randomSection.appendChild(randomContainer);
     document.getElementById("generate-anime").addEventListener("click", generateAnimeRandom);
    
-
     window.sr = ScrollReveal();
     sr.reveal(".recommendation-random-container",{
         scale: 0.95,    
         duration: 1000,
         reset: true
+    });
+
+    document.getElementById("more-info-anime").addEventListener("click", () => {
+        redirectUser(randomContainer);
     })
 }
 
@@ -293,7 +315,6 @@ const verifyMail = () => {
     //El metodo some devuelve true si al menos un elemento cumple la condicion que se pide en la funcion
     return ["@gmail.com", "@hotmail.com", "@outlook"].some(domain => email.includes(domain));
 }
-
 
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -337,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 });
 
 /* Separa lo que se usa globalmente en un js aparte como el envio de emails y el modal del submenu 
-   Agregarles un id a las series que este oculto
-   Agregar logica para redirigir a la pagina de una serie
+   Seguir buscando bugs
+   Agregar logica a los botones view-all
    Arreglar los bugs de las llamadas a la api
 */

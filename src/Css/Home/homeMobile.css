@@ -77,7 +77,7 @@ main{
 
 .description{
     color: #777;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     font-weight: bold;
 }
 
@@ -228,7 +228,13 @@ main{
     position: absolute;
     bottom: 0;
     left: 0;
+    opacity: 0;
     margin-bottom: 2px;
+    transition: opacity 0.3s ease;
+}
+
+.image-swiper-cont:hover .anime-title-cont{
+    opacity: 1;
 }
 
 .anime-title-cont span{
@@ -253,6 +259,9 @@ main{
     width: 100%;
 }
 
+.anime-id{
+    display: none;
+}
 
 .recommendation-random-section{
     width: 100%;

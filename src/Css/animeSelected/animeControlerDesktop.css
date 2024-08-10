@@ -1,0 +1,46 @@
+@media (min-width: 800px) {
+
+    #main-container{
+        width: 90%;
+    }
+
+}
+@media (min-width: 1024px) {
+
+    
+    
+    .characters-cont{
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 15px;
+    }
+
+    .character-image-cont{
+        height: 125px;
+    }
+    .character-rol{
+        font-size: 1rem;
+    }
+    .character-name{
+        font-size: 1rem;
+    }
+
+    .character-data{
+        height: 125px;
+    }
+
+    .seiyuu-data{
+        height: 125px;
+    }
+
+    .seiyuu-name{
+        font-size: 1rem;
+    }
+    
+    .seiyuu-nationality{
+        font-size: 1rem;
+    }
+
+    .seiyuu-image-cont{
+        height: 125px;
+    }
+}
