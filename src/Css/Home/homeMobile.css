@@ -151,7 +151,12 @@ main{
     border: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center;    
+}
+
+.anime-popular-row a,
+.user-animes-container a{
+    text-decoration: none;
 }
 
 .plus-container{
@@ -162,6 +167,7 @@ main{
     place-items: center;
     margin-right: 2px;
     border-radius: 20px;
+    color: var(--black-color);
 }
 
 .title-popular-button span ,
@@ -356,9 +362,11 @@ main{
     font-size: 12px;
     padding: 15px 20px;
     border: 1px solid var(--menu-lateral-color);
+    cursor: pointer;
 }
 
 #more-info-anime{
     padding: 15px 30px;
     border: 1px solid var(--menu-lateral-color);
+    cursor: pointer;
 }

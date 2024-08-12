@@ -10,7 +10,7 @@ const getSerieId = localStorage.getItem("idSerieActual");
 let swiper;
 
 
-const toggleMenu = () =>{
+const toggleMenu = () => {
     modal.classList.toggle("visible-modal");
     lateralMenu.classList.toggle("visible-menu");
     document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll");
@@ -137,25 +137,26 @@ const drawSuperiorSection = (serie) => {
                             </div>
 
                             <div class="anime-card-info">
-                                <div class="score-cont">
-                                    <div class="logo-score-cont">
-                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                <div class="info-stats-cont">
+                                    <div class="score-cont">
+                                        <div class="logo-score-cont">
+                                            <i class="fa-solid fa-arrow-trend-up"></i>
+                                        </div>
+                                        <span class="score">${serie.score}</span>
                                     </div>
-                                    <span class="score">${serie.score}</span>
-                                </div>
 
-                                <div class="ranked-cont">
-                                    <span class="ranked"><b>Ranked:</b> #${serie.rank}</span>
-                                </div>
+                                    <div class="ranked-cont">
+                                        <span class="ranked"><b>Ranked:</b> #${serie.rank}</span>
+                                    </div>
 
-                                <div class="season-cont">
-                                    <span class="season"><b>Season:</b> ${serie.season} ${serie.year}</span>
-                                </div>
+                                    <div class="season-cont">
+                                        <span class="season"><b>Season:</b> ${serie.season} ${serie.year}</span>
+                                    </div>
 
-                                <div class="studio-cont">
-                                    <span class="studio"><b>Studio:</b> ${serie.studios[0].name}</span>
+                                    <div class="studio-cont">
+                                        <span class="studio"><b>Studio:</b> ${serie.studios[0].name}</span>
+                                    </div>
                                 </div>
-
                                 <div class="buttons-cont">
                                     <button class="favorite-button">
                                         <span class="logo">
@@ -180,7 +181,8 @@ const drawSuperiorSection = (serie) => {
 
     document.querySelector(".favorite-button").addEventListener("click", addFavorites);
     document.querySelector(".submit-score").addEventListener("click", submitScore);
-        
+    document.title = serie.title;
+            
     verifySerieInclude()
 }
 
@@ -424,7 +426,7 @@ const createCharacterModal = (characterId) =>{
     const urlPictures = `https://api.jikan.moe/v4/characters/${characterId}/pictures`;
 
     drawSwipperGalery(urlPictures);
-    drawCharacterInfo(urlCharacterInfo);
+    // drawCharacterInfo(urlCharacterInfo);
     toggleCharacterModal();
     document.querySelector(".close-character-btn").addEventListener("click", toggleCharacterModal)
 
@@ -483,4 +485,5 @@ document.querySelector(".more-character-btn").addEventListener("click", loadMore
 -Arreglar bug que no carga la series sugun X ids
 A futuro: 
 -optimizar el codigo para que no se repita
+-Agregar animaciones
 */

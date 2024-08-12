@@ -1,35 +1,133 @@
 @media (min-width: 800px) {
-
     #main-container{
-        width: 90%;
+        width: 80%;
     }
 
-}
-@media (min-width: 1024px) {
+    .anime-info-superior-container{
+        padding: 0;
+        padding-top: 20px;
+    }
+    
+    .anime-image{
+        width: 25%;
+    }
 
-    
-    
+    .anime-card-info{
+        width: 75%;
+    }
+
+    .info-stats-cont{
+        background: rgba(255, 255, 255, 0.5);
+        flex-direction: row;
+        height: auto;
+        padding: 25px 5px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .score-cont,
+    .ranked-cont ,
+    .season-cont ,
+    .studio-cont {
+        width: auto;
+    }
+
+    .ranked-cont span b,
+    .season-cont span b,
+    .studio-cont span b{
+        font-size: 1.5rem;
+    }
+
+    .ranked-cont span ,
+    .season-cont span ,
+    .studio-cont span {
+        font-size: 1.3rem;
+    }
+
+    .buttons-cont{
+        justify-content: start;
+        padding-left: 20px;
+    }
+
+    .favorite-button{
+        width: 10rem;
+        padding: 10px 8px;
+        margin-right: 20px;
+        font-size: 1.3rem;
+    }
+
+    .score-input {
+        width: 6rem;
+        padding-left: 10px;
+        font-size: 1.5rem;
+        margin-right: 20px;
+    }
+
+    .submit-score{
+        width: 5rem;
+        font-size: 1.2rem;
+    }
+
+    .anime-info-middle-container{
+        display: flex;
+        flex-direction: row-reverse;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .more-info-cont{
+        width: 35%;
+        margin-top: 0;
+    }
+
+    .synopsis-cont{
+        padding-left: 25px;
+    }
+
+    .synopsis-paragraph-cont{
+        max-height: 1000px;
+        margin-top: 20px;
+    }
+
+    .synopsis{
+        font-size: 1.1rem;
+    }
+
+    .button-expasion{
+        display: none;
+    }
+
+    .character{
+        margin-top: 0;
+    }
+
     .characters-cont{
         grid-template-columns: repeat(2,1fr);
         grid-gap: 15px;
+        padding: 3px;
+        margin-top: 20px;
     }
 
     .character-image-cont{
         height: 125px;
+        width: 35%;
     }
+
+    .character-data{
+        height: 125px;
+        width: 65%;   
+    }
+
+    .seiyuu-data{
+        height: 125px;
+        width: 65%;   
+    }
+    
     .character-rol{
         font-size: 1rem;
     }
     .character-name{
         font-size: 1rem;
-    }
-
-    .character-data{
-        height: 125px;
-    }
-
-    .seiyuu-data{
-        height: 125px;
     }
 
     .seiyuu-name{
@@ -42,5 +140,14 @@
 
     .seiyuu-image-cont{
         height: 125px;
+        width: 35%;
+    }
+    
+    .swiper{
+        width: 25%;
+    }
+
+    .info-character{
+        width: 50%;
     }
 }

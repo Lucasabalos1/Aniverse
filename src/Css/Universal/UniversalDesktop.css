@@ -53,13 +53,20 @@
         text-decoration: none;
     }
 
-    .user-info-cont{
+    .user-logout-cont{
         background: var(--login-button);
         border-radius: 50%;
         width: 30px;
         height: 30px;
         display: grid;
         place-items: center;
+        transition: 0.2s all linear;
+        cursor: pointer ;
+    }
+
+    .user-logout-cont:hover{
+        background: #e20f1d;
+        color: var(--white-color);
     }
 
     .login-cont a:hover{

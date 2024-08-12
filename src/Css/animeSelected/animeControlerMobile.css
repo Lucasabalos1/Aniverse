@@ -57,6 +57,13 @@ main{
     padding-left: 10px;
 }
 
+.info-stats-cont{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .score-cont{
     width: 100%;
     display: flex;
@@ -93,6 +100,12 @@ main{
     border: 1px solid #111;
     padding: 4px 8px;
     font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.favorite-button:hover{
+    background: #c3c3c3;
 }
 
 .logo .fa-heart{
@@ -123,13 +136,18 @@ main{
 
 .submit-score{
     display: inline-block;
-    background-color: #ff4500; 
-    color: #fff; 
+    background: #ff4500; 
+    color: var(--black-color);
+    font-weight: bold; 
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 1px;
+}
+
+.submit-score:hover{
+    background: #dd511f;
 }
 
 .anime-info-middle-section{
@@ -411,6 +429,7 @@ main{
     background: var(--white-color);
     color: var(--black-color);;
     border: none;
+    border-radius: 5px;
 }
 
 .galery-container{
@@ -421,7 +440,6 @@ main{
 
 .swiper {
   width: 50%;
-  height: 100%;
 }
 
 .swiper-slide {
@@ -469,4 +487,3 @@ main{
 b{
     color: var(--black-color);
 }
-/* Agregar estilos para el modal de personajes */

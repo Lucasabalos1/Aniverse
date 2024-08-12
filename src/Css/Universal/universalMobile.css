@@ -410,11 +410,18 @@ label b {
     place-items: start;
 }
 
-.user-info-cont-mobile{
+.user-logout-cont-mobile{
     background: var(--login-button);
     border-radius: 50%;
     padding: 10px 15px;
     border: 1px solid var(--header-color);
+    transition: 0.3 all linear;
+    cursor: pointer;
+}
+
+.user-logout-cont-mobile:hover{
+    background: #e20f1d;
+    color: var(--white-color);
 }
 
 .link-cont-mobile a{

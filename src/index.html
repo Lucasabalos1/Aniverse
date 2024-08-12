@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="Css/Universal/universalMobile.css">
     <link rel="stylesheet" href="Css/Universal/UniversalDesktop.css">
     <link rel="stylesheet" href="Css/Home/homeDesktop.css">
+    <link rel="shortcut icon" href="Images/Kintoun.webp" type="image/png"/>
     <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
     <script src="node_modules/scrollreveal/dist/scrollreveal.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -67,8 +68,8 @@
                     <div class="link-cont">
                         <a href="Pages/LoginAndRegister.html">LOGIN</a>
                     </div>
-                    <div class="user-info-cont hidden-toggle">
-                        <i class="fa-solid fa-user"></i>
+                    <div class="user-logout-cont hidden-toggle">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </div>
             </div>
@@ -95,14 +96,16 @@
 
                     <div class="anime-popular-row">
                         <span class="popular-title">POPULAR LIST</span>
-                        <div class="popular-button-container" id="popular-list-button">
-                            <div class="plus-container">
-                                <i class="fa-solid fa-plus"></i>
+                        <a href="Pages/animeList.html">
+                            <div class="popular-button-container" id="popular-list-button">
+                                <div class="plus-container">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                                <div class="title-popular-button">
+                                    <span>View All</span>
+                                </div>
                             </div>
-                            <div class="title-popular-button">
-                                <span>View All</span>
-                            </div>
-                        </div>
+                        </a>
                     </div>
 
                     <hr>
@@ -122,17 +125,19 @@
             <section class="user-anime-list-section">
                 <div class="user-animes-container">
 
-                    <div class="anime-user-list-row">
-                        <span class="user-list-title">YOUR LIST</span>
-                        <div class="user-list-button-container" id="user-list-button">
-                            <div class="plus-container">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                            <div class="title-user-list-button">
-                                <span>View All</span>
+                    <a href="Pages/animeList.html">
+                        <div class="anime-user-list-row">
+                            <span class="user-list-title">YOUR LIST</span>
+                            <div class="user-list-button-container" id="user-list-button">
+                                <div class="plus-container">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                                <div class="title-user-list-button">
+                                    <span>View All</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <hr>
 
@@ -223,8 +228,8 @@
                     <div class="link-cont-mobile">
                         <a href="Pages/LoginAndRegister.html">LOGIN</a>
                     </div>
-                    <div class="user-info-cont-mobile hidden-toggle ">
-                        <i class="fa-solid fa-user"></i>
+                    <div class="user-logout-cont-mobile hidden-toggle ">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </li>
                 <li>

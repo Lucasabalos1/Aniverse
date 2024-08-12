@@ -341,6 +341,11 @@ document.getElementById("form").addEventListener("submit", (event) => {
       });
 })
 
+const closeSesion = () => {
+    localStorage.removeItem("sesionActual");
+    location.reload();
+}
+
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
 document.addEventListener("DOMContentLoaded", () =>{
@@ -351,14 +356,16 @@ document.addEventListener("DOMContentLoaded", () =>{
     inicializeAnimation();
     if (userId) {
         document.querySelector(".link-cont").classList.toggle("hidden-toggle");
-        document.querySelector(".user-info-cont").classList.toggle("hidden-toggle");
+        document.querySelector(".user-logout-cont").classList.toggle("hidden-toggle");
         document.querySelector(".link-cont-mobile").classList.toggle("hidden-toggle");
-        document.querySelector(".user-info-cont-mobile").classList.toggle("hidden-toggle");
+        document.querySelector(".user-logout-cont-mobile").classList.toggle("hidden-toggle");
+        document.querySelector(".user-logout-cont").addEventListener("click", closeSesion);
+        document.querySelector(".user-logout-cont-mobile").addEventListener("click", closeSesion);
     }
 });
 
 /* Separa lo que se usa globalmente en un js aparte como el envio de emails y el modal del submenu 
    Seguir buscando bugs
-   Agregar logica a los botones view-all
    Arreglar los bugs de las llamadas a la api
+   Agregar la funcionalidad del more buttons
 */
