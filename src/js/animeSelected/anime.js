@@ -1,23 +1,21 @@
-const modal = document.getElementById("modal-menu-container");
-const lateralMenu = document.querySelector(".menu-lateral-container");
-const modalBtn = document.querySelector(".modal-button");
-const closeBtn = document.getElementById("close-modal-button");
 const infoSuperiorSection = document.getElementById("anime-info-superior-section");
 const infoMiddleSection = document.getElementById("anime-info-middle-section");
 const infoInferiorSection = document.getElementById("characters-cont");
-const userId = localStorage.getItem("sesionActual");
 const getSerieId = localStorage.getItem("idSerieActual");
 let swiper;
+window.sr = ScrollReveal();
 
-
-const toggleMenu = () => {
-    modal.classList.toggle("visible-modal");
-    lateralMenu.classList.toggle("visible-menu");
-    document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll");
-}
 
 const toggleAcordion = () => {
     document.querySelector(".synopsis-paragraph-cont").classList.toggle("show-acordion");
+}
+
+const inicializeAnimations = () =>{
+    sr.reveal("header", {
+        duration:1000,
+        origin: `bottom`,
+        distance: `-100px`
+    })
 }
 
 const toggleFavoriteButton = () => {
@@ -37,8 +35,10 @@ const createSerie = async(serieId) =>{
 
             const serie = {
                 serie_id: data.data.mal_id,
-                name: data.data.title,
                 image: data.data.images["webp"].large_image_url,
+                name: data.data.title,
+                type:data.data.type ,
+                episodes: (data.data.episodes != null)  ? data.data.episodes : "?",
                 score: "0"
             };
 
@@ -142,19 +142,19 @@ const drawSuperiorSection = (serie) => {
                                         <div class="logo-score-cont">
                                             <i class="fa-solid fa-arrow-trend-up"></i>
                                         </div>
-                                        <span class="score">${serie.score}</span>
+                                        <span class="score">${(serie.score != null) ? serie.score : "N/A"}</span>
                                     </div>
 
                                     <div class="ranked-cont">
-                                        <span class="ranked"><b>Ranked:</b> #${serie.rank}</span>
+                                        <span class="ranked"><b>Ranked:</b> #${(serie.rank != null) ? serie.rank : "?"}</span>
                                     </div>
 
                                     <div class="season-cont">
-                                        <span class="season"><b>Season:</b> ${serie.season} ${serie.year}</span>
+                                        <span class="season"><b>Season:</b> ${(serie.season!= null) ? serie.season: "?"} ${(serie.year != null) ? serie.year: "?"}</span>
                                     </div>
 
                                     <div class="studio-cont">
-                                        <span class="studio"><b>Studio:</b> ${serie.studios[0].name}</span>
+                                        <span class="studio"><b>Studio:</b> ${(serie.studios.length > 0 && serie.studios[0].name != null) ? serie.studios[0].name : "?"}</span>
                                     </div>
                                 </div>
                                 <div class="buttons-cont">
@@ -183,7 +183,12 @@ const drawSuperiorSection = (serie) => {
     document.querySelector(".submit-score").addEventListener("click", submitScore);
     document.title = serie.title;
             
-    verifySerieInclude()
+    verifySerieInclude();
+
+    sr.reveal(infoSuperiorContainer, {
+        duration: 1500,
+        scale: 0.9
+    })
 }
 
 const drawMiddleSection = (serie) =>{
@@ -361,7 +366,7 @@ const drawSwipperGalery = async(url) =>{
 }
 
 const constructNewString = (about, str) => {
-    
+    //Refactorizar
     const regex = new RegExp(`${str}\\s*([\\d\\s,]+)`);
     
     let match = about.match(regex);
@@ -470,20 +475,16 @@ const loadInfo = () => {
 }
 
 const loadMoreCharacters = () =>{
-
     const init = document.querySelectorAll(".character").length;
     loadCharacterSection(getSerieId,init, init+10)
 }
 
-modalBtn.addEventListener("click", toggleMenu);
-closeBtn.addEventListener("click", toggleMenu);
 document.addEventListener("DOMContentLoaded",loadInfo);
+document.addEventListener("DOMContentLoaded", inicializeAnimations);
 document.querySelector(".more-character-btn").addEventListener("click", loadMoreCharacters);
 
 /*
 -Arreglar bug para obtener los datos de la info
--Arreglar bug que no carga la series sugun X ids
 A futuro: 
 -optimizar el codigo para que no se repita
--Agregar animaciones
 */

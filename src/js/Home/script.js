@@ -2,16 +2,10 @@
 Obtener por generos
 https://api.jikan.moe/v4/anime?genres=1&limit=20*/
 
-const modal = document.getElementById("modal-menu-container");
-const lateralMenu = document.querySelector(".menu-lateral-container");
-const modalBtn = document.querySelector(".modal-button");
-const closeBtn = document.getElementById("close-modal-button");
 const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
 const swiperUserListWrapper = document.getElementById("swiper-user-list-wrapper")
 const randomSection = document.getElementById("recommendation-random-section");
-const formBtn = document.getElementById("send-button");
-const userId = localStorage.getItem("sesionActual");
 
 const inicializeAnimation = () => {
 
@@ -41,12 +35,6 @@ const inicializeAnimation = () => {
     })
 }
 
-const toggleMenu = () =>{
-    modal.classList.toggle("visible-modal");
-    lateralMenu.classList.toggle("visible-menu");
-    document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll")
-}
-
 const showMessageEmptyList = () => {
     const userAnimeContainer = document.querySelector(".user-animes-container");
 
@@ -57,6 +45,17 @@ const showMessageEmptyList = () => {
     message.innerHTML = "Lista de animes favoritos vacia"
 
     userAnimeContainer.appendChild(message);
+}
+
+const redirectUser = (serie) => {
+    const getId = serie.querySelector(".anime-id").textContent.trim();
+    localStorage.setItem("idSerieActual", getId);
+    window.location.href = "../Pages/animeSelected.html";   
+}
+
+const redirectWelcome = (serieId) =>{
+    localStorage.setItem("idSerieActual", serieId);
+    window.location.href = "../Pages/animeSelected.html";   
 }
 
 const inicializeSwipper = () => {
@@ -90,6 +89,10 @@ const drawInWelcome = (serie, serieId) => {
          </div>
     `
     swiperWelcomeWrapper.appendChild(slide);
+
+    const moreInfo = slide.querySelector(".more-info-button");
+
+    moreInfo.addEventListener("click", () => redirectWelcome(serieId));
 }
 
 const inicializeWelcomeSection = async () => {
@@ -161,10 +164,10 @@ const inicializePopularSection = async () => {
         let data = await response.json();
         drawPopularAnime(data.data);
     } catch (error) {
-        console.log("La api fallo");
+        console.log(`API call failed: ${error.message}. Retrying...`);
+        inicializePopularSection();
     }
     inicializeSwipperPopular();
-    console.log("listo popular section")
 }
 
 const inicializeSwipperUserList = () => {
@@ -179,15 +182,7 @@ const inicializeSwipperUserList = () => {
       });
 }
 
-const redirectUser = (serie) => {
-    const getId = serie.querySelector(".anime-id").textContent.trim();
-    localStorage.setItem("idSerieActual", getId);
-    window.location.href = "../Pages/animeSelected.html";   
-}
-
-const inicializeUserListSection = () => {
-    //To-do: Falta la logica en la que toma las series dependiendo el id del usuario y las muestra
-    
+const inicializeUserListSection = () => {    
     let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
     
     if (!storageData) {
@@ -310,62 +305,14 @@ const generateAnimeRandom = async () => {
     }
 };
 
-const verifyMail = () => {
-    const email = document.getElementById("email_input").value;
-    //El metodo some devuelve true si al menos un elemento cumple la condicion que se pide en la funcion
-    return ["@gmail.com", "@hotmail.com", "@outlook"].some(domain => email.includes(domain));
-}
-
-document.getElementById("form").addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    if (!verifyMail()) {
-        alert("Por favor, ingrese un correo electrónico válido con uno de los siguientes dominios: @gmail.com/.ar, @outlook.com/.ar, @hotmail.com/.ar");
-        return;
-    }
-    
-    formBtn.value = "ENVIANDO EMAIL...";
-
-    const serviceID = 'default_service';
-    const templateID = 'template_98e401c';
-
-    emailjs.sendForm(serviceID, templateID, document.getElementById("form"))
-    .then(() => {
-        formBtn.value = 'ENVIAR EMAIL';
-        console.log('Correo enviado exitosamente!');
-        alert('Email mandado!');
-      }, (err) => {
-        formBtn.value = 'ENVIAR EMAIL';
-        console.log('Correo no enviado!');
-        alert(JSON.stringify(err));
-      });
-})
-
-const closeSesion = () => {
-    localStorage.removeItem("sesionActual");
-    location.reload();
-}
-
-modalBtn.addEventListener("click", toggleMenu);
-closeBtn.addEventListener("click", toggleMenu);
 document.addEventListener("DOMContentLoaded", () =>{
     inicializeWelcomeSection();
     inicializePopularSection();
     inicializeUserListSection();
     generateAnimeRandom();
     inicializeAnimation();
-    if (userId) {
-        document.querySelector(".link-cont").classList.toggle("hidden-toggle");
-        document.querySelector(".user-logout-cont").classList.toggle("hidden-toggle");
-        document.querySelector(".link-cont-mobile").classList.toggle("hidden-toggle");
-        document.querySelector(".user-logout-cont-mobile").classList.toggle("hidden-toggle");
-        document.querySelector(".user-logout-cont").addEventListener("click", closeSesion);
-        document.querySelector(".user-logout-cont-mobile").addEventListener("click", closeSesion);
-    }
 });
 
-/* Separa lo que se usa globalmente en un js aparte como el envio de emails y el modal del submenu 
+/*  
    Seguir buscando bugs
-   Arreglar los bugs de las llamadas a la api
-   Agregar la funcionalidad del more buttons
 */
