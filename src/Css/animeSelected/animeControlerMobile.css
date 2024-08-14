@@ -462,7 +462,6 @@ main{
     width: 90%;
     margin: 0 auto;
     background-image: url("https://img.freepik.com/foto-gratis/papel-papiro-marron_53876-14519.jpg?w=740&t=st=1722990983~exp=1722991583~hmac=af0bb65742dbb60a3eeaed63ba0c7d48ce38dd2a36a00fab5bc18e6bab0f491c");
-    background-repeat: no-repeat;
     margin-top: 50px;
     border-radius: 10px;
     padding: 10px;
@@ -481,7 +480,9 @@ main{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
-    color: #232323;
+    color: #131313;
+    white-space: pre-wrap;
+    text-indent: 0;
 }
 
 b{

@@ -365,17 +365,6 @@ const drawSwipperGalery = async(url) =>{
     }
 }
 
-const constructNewString = (about, str) => {
-    //Refactorizar
-    const regex = new RegExp(`${str}\\s*([\\d\\s,]+)`);
-    
-    let match = about.match(regex);
-
-    console.log(match);
-
-    return match ? match[1].trim() : 'No data';
-}
-
 const drawCharacterInfo = async(url) => {   
     try {
         let response = await fetch(url)
@@ -393,33 +382,10 @@ const drawCharacterInfo = async(url) => {
         let about = data.data.about;
 
         info.innerHTML = `
-        
                 <div class="info-character-cont">
-                    <span class="info-character-text"><b>Name:</b> ${data.data.name}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Age:</b> ${constructNewString(about,"Age:")}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Birthdate:</b> ${constructNewString(about,"Birthdate:")}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Height:</b> ${constructNewString(about,"Height:")}cm</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Affiliation:</b> ${constructNewString(about,"Affiliation:")}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Position:</b> ${constructNewString(about,"Position:")}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Devil Fruit:</b> ${constructNewString(about,"Devil Fruit:")}</span>
-                </div>
-                <div class="info-character-cont">
-                    <span class="info-character-text"><b>Type:</b> ${constructNewString(about,"Type:")}</span>
+                    <p class="info-character-text">${(about != null) ? about : "No character info"}</p>
                 </div>
         `
-
         dataCharacterContainer.appendChild(info);
     } catch (error) {
         console.log(error)
@@ -431,7 +397,7 @@ const createCharacterModal = (characterId) =>{
     const urlPictures = `https://api.jikan.moe/v4/characters/${characterId}/pictures`;
 
     drawSwipperGalery(urlPictures);
-    // drawCharacterInfo(urlCharacterInfo);
+    drawCharacterInfo(urlCharacterInfo);
     toggleCharacterModal();
     document.querySelector(".close-character-btn").addEventListener("click", toggleCharacterModal)
 
@@ -441,6 +407,7 @@ const inicializeCharacters = (characters) =>{
 
     characters.forEach((characterSelected) => {
         characterSelected.addEventListener("click", () => {
+            console.log(characterSelected)
             const characterId = characterSelected.firstElementChild.innerHTML;
             createCharacterModal(characterId)
         });
@@ -457,8 +424,10 @@ const loadCharacterSection = async (serieId,start,end) => {
 
         let dataLimited = data.data.slice(start, end); 
 
+        infoInferiorSection.innerHTML = "";
+
         for (let index = 0; index < dataLimited.length; index++) {
-            drawCharacterCard(dataLimited[index])
+            drawCharacterCard(dataLimited[index]);
         }
 
         const getAllCharacters = document.querySelectorAll(".anime-character-cont")
@@ -476,7 +445,7 @@ const loadInfo = () => {
 
 const loadMoreCharacters = () =>{
     const init = document.querySelectorAll(".character").length;
-    loadCharacterSection(getSerieId,init, init+10)
+    loadCharacterSection(getSerieId,0, init+10)
 }
 
 document.addEventListener("DOMContentLoaded",loadInfo);
