@@ -453,7 +453,6 @@ document.addEventListener("DOMContentLoaded", inicializeAnimations);
 document.querySelector(".more-character-btn").addEventListener("click", loadMoreCharacters);
 
 /*
--Arreglar bug para obtener los datos de la info
 A futuro: 
 -optimizar el codigo para que no se repita
 */
