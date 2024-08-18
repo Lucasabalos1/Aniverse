@@ -2,14 +2,31 @@ const favoriteContainer = document.querySelector(".info-favorites-cont");
 const popularContainer = document.querySelector(".info-popular-cont");
 const userList = document.querySelector(".user-list-section");
 const popularList = document.querySelector(".popular-list-section");
+const currentList = localStorage.getItem("lista-actual");
+const userListBtn = document.getElementById("userListBtn")
+const popularListBtn = document.getElementById("popularListBtn")
+
 let currentPage = 1;
 let seriesCounter = 1;
-//Mejorar esto ultimo 
+//Mejorar esto ultimo a futuro
 
 
-const toggleList = () => {
-    userList.classList.toggle("hidden-list")
-    popularList.classList.toggle("hidden-list")
+const toggleList = (btn) => {
+    userList.classList.toggle("hidden-list");
+    popularList.classList.toggle("hidden-list");
+
+    //mejorar
+    if (btn === userListBtn) {
+        popularListBtn.classList.remove("selected-list")
+        userListBtn.classList.add("selected-list")
+        userListBtn.disabled = true;
+        popularListBtn.disabled = false;
+    }else if (btn === popularListBtn) {
+        userListBtn.classList.remove("selected-list")
+        popularListBtn.classList.add("selected-list")
+        popularListBtn.disabled = true;
+        userListBtn.disabled = false;
+    }
 }
 
 const drawFavoritesSeries = (series) => {
@@ -114,15 +131,20 @@ document.querySelector(".more-animes-btn").addEventListener("click", () => {
     loadPopularSeries(currentPage)
 });
 
-document.addEventListener("DOMContentLoaded", (loadFavoriteSeries))
+document.addEventListener("DOMContentLoaded", loadFavoriteSeries)
 document.addEventListener("DOMContentLoaded", () => { loadPopularSeries(currentPage)})
-document.getElementById("popularListBtn").addEventListener("click", toggleList)
-document.getElementById("userListBtn").addEventListener("click", toggleList)
+document.addEventListener("DOMContentLoaded", () => {
+    //mejorar
+    if (currentList === "usuario") {
+        userListBtn.classList.add("selected-list");
+        popularList.classList.add("hidden-list");
+        userListBtn.disabled = true;
+    } else if (currentList === "popular") {
+        popularListBtn.classList.add("selected-list");
+        userList.classList.add("hidden-list");
+        popularListBtn.disabled = true;
+    }
+});
 
-
-/*
-
--Agregar la funcionalidad de los botones
--Arreglar bug de la imagen
-
-*/
+userListBtn.addEventListener("click", () => toggleList(userListBtn));
+popularListBtn.addEventListener("click", () => toggleList(popularListBtn));
