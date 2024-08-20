@@ -151,7 +151,8 @@ main{
     border: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
+    cursor: pointer;
 }
 
 .anime-popular-row a,

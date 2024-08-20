@@ -202,6 +202,48 @@ main{
     margin-bottom: 2px;
     background: var(--black-color);
     color: var(--white-color);
+    cursor: pointer;
 }
 
 /* Adaptar a responsive */
+
+@media (min-width: 800px) {
+    
+    .lists-container{
+        width: 80%;
+        border: 1px solid #666;
+    }
+
+    .images-text{
+        width: 5%;
+    }
+
+    .sleeve-cont{
+        width: 5%;
+    }
+    
+    .img-cont{
+        width: 90%;
+    }
+
+    .anime-title-text{
+        width: 30%;
+    }
+
+    .anime-title-cont{
+        width: 30%;
+        font-size: 0.9rem;
+    }
+
+    
+    .number-text span,
+    .images-text span,
+    .anime-title-text span,
+    .anime-type-text span,
+    .episodes-text span,
+    .score-text span{
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+}

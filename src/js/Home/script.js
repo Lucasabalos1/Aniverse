@@ -4,8 +4,10 @@ https://api.jikan.moe/v4/anime?genres=1&limit=20*/
 
 const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
-const swiperUserListWrapper = document.getElementById("swiper-user-list-wrapper")
+const swiperUserListWrapper = document.getElementById("swiper-user-list-wrapper");
 const randomSection = document.getElementById("recommendation-random-section");
+const popularBtn = document.getElementById("popular-list-button");
+const userBtn = document.getElementById("user-list-button");
 
 const inicializeAnimation = () => {
 
@@ -304,6 +306,16 @@ const generateAnimeRandom = async () => {
         generateAnimeRandom();
     }
 };
+
+popularBtn.addEventListener("click", () => {
+    localStorage.setItem("current-list", "popular");
+    window.location.href = `Pages/animeList.html`;
+})
+
+userBtn.addEventListener("click", () => {
+    localStorage.setItem("current-list", "usuario");
+    window.location.href = `Pages/animeList.html`;
+})
 
 document.addEventListener("DOMContentLoaded", () =>{
     inicializeWelcomeSection();

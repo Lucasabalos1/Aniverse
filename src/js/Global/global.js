@@ -4,6 +4,7 @@ const lateralMenu = document.querySelector(".menu-lateral-container");
 const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const formBtn = document.getElementById("send-button");
+const searchBtns = document.querySelectorAll(".search-button")
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -18,7 +19,6 @@ const closeSesion = () => {
 
 const verifyMail = () => {
     const email = document.getElementById("email_input").value;
-    //El metodo some devuelve true si al menos un elemento cumple la condicion que se pide en la funcion
     return ["@gmail.com", "@hotmail.com", "@outlook"].some(domain => email.includes(domain));
 }
 
@@ -46,6 +46,20 @@ document.getElementById("form").addEventListener("submit", (event) => {
         alert(JSON.stringify(err));
       });
 })
+
+searchBtns.forEach((searchBtn) => {
+    searchBtn.addEventListener("click", () => {
+
+        //Arreglar para version mobile
+        const getInputSearch = document.querySelector(".serieInput").value
+    
+        localStorage.setItem("serieSearch", getInputSearch)
+    
+        window.location.href = `../Pages/searchPage.html`;
+    })
+})
+
+//Agregar el de generos
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
