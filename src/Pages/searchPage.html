@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta  name="description" content="Aniverse, la pagina de anime en donde podras encontrar toda la informacion de tus series favoritas y organizarlas">
-    <title>Aniverse</title>
-    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="Css/Home/homeMobile.css">
-    <link rel="stylesheet" href="Css/Universal/universalMobile.css">
-    <link rel="stylesheet" href="Css/Universal/UniversalDesktop.css">
-    <link rel="stylesheet" href="Css/Home/homeDesktop.css">
-    <link rel="shortcut icon" href="Images/Kintoun.webp" type="image/png"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="../Css/Universal/universalMobile.css">
+    <link rel="stylesheet" href="../Css/Universal/UniversalDesktop.css">
+    <link rel="shortcut icon" href="../Images/Kintoun.webp" type="image/png"/>
     <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
-    <script src="node_modules/scrollreveal/dist/scrollreveal.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">emailjs.init('niTGv4uNgg2305CH5')</script>
 </head>
 <body>
-    
     <!-- Start Header -->
     <header>
         <nav>
@@ -27,7 +21,7 @@
                 <div class="logo-container">
                     <h1>AniVerse</h1>
                      <div class="logo-img-cont">
-                         <img src="Images/Kintoun.webp" alt="Nube Voladora">
+                         <img src="../Images/Kintoun.webp" alt="Nube Voladora">
                      </div>
                  </div>
   
@@ -44,21 +38,21 @@
                 <div class="logo-container">
                    <h1>AniVerse</h1>
                     <div class="logo-img-cont">
-                        <img src="Images/Kintoun.webp" alt="Nube Voladora">
+                        <img src="../Images/Kintoun.webp" alt="Nube Voladora">
                     </div>
                 </div>
 
                 <ul class="ul_menu_lateral-desk">    
                     <li>
-                        <a href="index.html">HOME</a>
+                        <a href="../index.html">HOME</a>
                     </li>
                     <li>
-                        <a href="Pages/advanceSearch.html">ADVANCE SEARCH</a>
+                        <a href="advanceSearch.html">ADVANCE SEARCH</a>
                     </li>
                 </ul>
                     
                 <div class="search-container">
-                    <input type="search" class="serieInput" placeholder="ingrese una serie...">
+                    <input type="text" class="serieInput" placeholder="ingrese una serie...">
                     <button class="search-button">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -66,7 +60,7 @@
 
                 <div class="login-cont">
                     <div class="link-cont">
-                        <a href="Pages/LoginAndRegister.html">LOGIN</a>
+                        <a href="LoginAndRegister.html">LOGIN</a>
                     </div>
                     <div class="user-logout-cont hidden-toggle">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -80,88 +74,17 @@
     <!-- End Header -->
 
     <!-- Start Main -->
-    <main>
-        <div class="main-container">
-            
-            <section class="welcome-section">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper" id="swiper-welcome-wrapper">
-                    </div>
-                    <div class="swiper-pagination"></div>
-                  </div>                
+     <main>
+        <div classs="main-container" id="main-container">
+            <section class="search-section">
+                
             </section>
-
-            <section class="anime-popular-section">
-                <div class="anime-popular-container">
-
-                    <div class="anime-popular-row">
-                        <span class="popular-title">POPULAR LIST</span>
-                        
-                            <div class="popular-button-container" id="popular-list-button">
-                                <div class="plus-container">
-                                    <i class="fa-solid fa-plus"></i>
-                                </div>
-                                <div class="title-popular-button">
-                                    <span>View All</span>
-                                </div>
-                            </div>
-                        
-                    </div>
-
-                    <hr>
-
-                    <div class="swiper mySwiperPopular">
-                        <div class="swiper-wrapper" id="swiper-popular-wrapper">
-                        </div>
-                        
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    
-                    </div>
-                    
-                </div>
-            </section>
-
-            <section class="user-anime-list-section">
-                <div class="user-animes-container">
-
-                        <div class="anime-user-list-row">
-                            <span class="user-list-title">YOUR LIST</span>
-                            <div class="user-list-button-container" id="user-list-button">
-                                <div class="plus-container">
-                                    <i class="fa-solid fa-plus"></i>
-                                </div>
-                                <div class="title-user-list-button">
-                                    <span>View All</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-
-                    <hr>
-
-                    <div class="swiper mySwiperUserList">
-                        <div class="swiper-wrapper" id="swiper-user-list-wrapper">
-
-                        </div>
-                        
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    
-                    </div>
-                    
-                </div>
-            </section>
-
-            <section class="recommendation-random-section" id="recommendation-random-section">
-            </section>
-            
         </div>
-    </main>
+     </main>
     <!-- End Main -->
 
-    <!-- Start Footer -->
-    <footer>
+     <!-- Start Footer -->
+     <footer>
         <section class="footer-section">
             <div class="footer-container">
                 <section class="form-section">
@@ -196,8 +119,8 @@
                 </section>
 
                 <ul class="footer_ul">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="Pages/advanceSearch.html">ADVANCE SEARCH</a></li>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="advanceSearch.html">ADVANCE SEARCH</a></li>
                 </ul>
             </div>
         </section>
@@ -207,7 +130,7 @@
     </footer>
     <!-- End Footer -->
 
-    <!-- Modal Start -->
+    <!-- Modals Start -->
     <div class="modal-menu-container" id="modal-menu-container">
         <div class="menu-lateral-container" >
             <div class="superior-buttons">
@@ -225,17 +148,17 @@
             <ul class="ul_menu_lateral">
                 <li class="login-cont">
                     <div class="link-cont-mobile">
-                        <a href="Pages/LoginAndRegister.html">LOGIN</a>
+                        <a href="LoginAndRegister.html">LOGIN</a>
                     </div>
-                    <div class="user-logout-cont-mobile hidden-toggle ">
+                    <div class="user-logout-cont-mobile hidden-toggle">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </li>
                 <li>
-                    <a href="index.html">HOME</a>
+                    <a href="../index.html">HOME</a>
                 </li>
                 <li>
-                    <a href="Pages/advanceSearch.html">ADVANCE SEARCH</a>
+                    <a href="advanceSearch.html">ADVANCE SEARCH</a>
                 </li>
             </ul>
 
@@ -305,14 +228,12 @@
             </div>
         </div>
     </div>
-    <!-- Modal End -->
-
-    <!-- Scripts -->
-    <script src="node_modules/swiper/swiper-bundle.min.js"></script>
-    <script src="js/Global/global.js"></script>
-    <script src="js/Home/script.js"></script>
-    
+    <!-- Modals End -->
+       
+    <!-- Scripts Start -->
+    <script src="../js/Global/global.js"></script>
+    <script src=""></script>
+   
+       <!-- Scripts End -->
 </body>
 </html>
-<!-- Probar agregarle un boton de cerrar sesion 
-    Agregar boton de return -->

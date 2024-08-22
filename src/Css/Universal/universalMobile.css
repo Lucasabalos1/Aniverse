@@ -249,13 +249,13 @@ nav{
     padding: 5px;
 }
 
-.ul_genders li a{
+.ul_genders li span{
     color: var(--white-color);
     text-decoration: none;
     font-size: 0.9rem;
 }
 
-.ul_genders li a:hover{
+.ul_genders li span:hover{
     color: #B1B1B1;
 }
 

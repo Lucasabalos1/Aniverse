@@ -4,7 +4,8 @@ const lateralMenu = document.querySelector(".menu-lateral-container");
 const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const formBtn = document.getElementById("send-button");
-const searchBtns = document.querySelectorAll(".search-button")
+const searchBtns = document.querySelectorAll(".search-button");
+const genres = document.querySelectorAll(".genre");
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
@@ -49,17 +50,24 @@ document.getElementById("form").addEventListener("submit", (event) => {
 
 searchBtns.forEach((searchBtn) => {
     searchBtn.addEventListener("click", () => {
-
-        //Arreglar para version mobile
         const getInputSearch = document.querySelector(".serieInput").value
     
         localStorage.setItem("serieSearch", getInputSearch)
     
         window.location.href = `../Pages/searchPage.html`;
     })
-})
+});
 
-//Agregar el de generos
+genres.forEach((genre) => {
+    genre.addEventListener("click", () => {
+        const getGen = genre.textContent;
+
+        localStorage.setItem("genreSelected", getGen)
+
+        window.location.href = `../Pages/searchPage.html`;
+    });
+});
+
 
 modalBtn.addEventListener("click", toggleMenu);
 closeBtn.addEventListener("click", toggleMenu);
