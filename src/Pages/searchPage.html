@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../Css/Universal/universalMobile.css">
     <link rel="stylesheet" href="../Css/Universal/UniversalDesktop.css">
+    <link rel="stylesheet" href="../Css/Search/searchMobile.css">
     <link rel="shortcut icon" href="../Images/Kintoun.webp" type="image/png"/>
     <script src="https://kit.fontawesome.com/c82c5bef31.js" defer crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -76,8 +77,72 @@
     <!-- Start Main -->
      <main>
         <div classs="main-container" id="main-container">
-            <section class="search-section">
-                
+            <section class="search-filter-section">
+                <div class="bar-filter-cont">
+                    <div class="search-bar-cont">
+                        <span class="search-title">Anime Search</span>
+                        <input type="text" class="search-input" placeholder="Insert Anime Name...">
+                    </div>
+
+                    <div class="genre-acordion-cont">
+                        <div class="superior-acordion-row">
+                            <span class="genre-title">GENRES</span>
+                            <i class="fa-solid fa-angle-left"></i>
+                        </div>
+
+                        <div class="inferior-acordion-row">
+                            <ul class="ul_genres">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section">
+                <div class="results-container">
+                    <div class="animes-result-cont">
+                        
+                        <div class="result-message">
+                            <span class="message">RESULTS FOR</span>
+                            <hr>
+                        </div>
+                        
+                        <div class="anime-result">
+                            <div class="anime-image">
+                                <img src="" alt="anime-image">
+                            </div>
+                            <div class="data-anime-cont">
+                                <div class="anime-title-cont">
+                                    <span class="anime-title">One Piece</span>
+                                </div>
+                                
+                                <div class="genres-cont">
+                                    <span class="gen">Action</span>
+                                    <span class="gen">Adventure</span>
+                                </div>
+
+                                <div class="anime-metadata">
+                                    <div class="studio-cont">
+                                        <span class="studio">Toei Animation</span>
+                                    </div>
+
+                                    <div class="source-cont">
+                                        <span class="source">Manga</span>
+                                    </div>
+
+                                    <div class="demography-cont">
+                                        <span class="demography">Shounen</span>
+                                    </div>
+                                </div>
+
+                                <div class="redirect-button-cont">
+                                    <button class="redirect-button">More Info</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
      </main>
@@ -232,7 +297,7 @@
        
     <!-- Scripts Start -->
     <script src="../js/Global/global.js"></script>
-    <script src=""></script>
+    <script src="../js/Search/search.js"></script>
    
        <!-- Scripts End -->
 </body>
