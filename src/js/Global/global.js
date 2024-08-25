@@ -6,6 +6,8 @@ const closeBtn = document.getElementById("close-modal-button");
 const formBtn = document.getElementById("send-button");
 const searchBtns = document.querySelectorAll(".search-button");
 const genres = document.querySelectorAll(".genre");
+const searchActual = localStorage.getItem("serieSearch");
+const genreActual = localStorage.getItem("genreActual")
 
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");

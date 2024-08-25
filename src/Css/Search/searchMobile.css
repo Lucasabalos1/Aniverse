@@ -84,14 +84,14 @@ main{
 .ul_genres{
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
-    grid-gap: 5px;
+    grid-gap: 10px;
 }
 
 .li_genre{
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: var(--white-color);
     font-weight: bold;
     transition: color 0.3s ease-in-out;
