@@ -62,9 +62,10 @@ searchBtns.forEach((searchBtn) => {
 
 genres.forEach((genre) => {
     genre.addEventListener("click", () => {
+        //refactorizar y hacer que me de su ID
         const getGen = genre.textContent;
 
-        localStorage.setItem("genreSelected", getGen)
+        localStorage.setItem("genreActual", getGen)
 
         window.location.href = `../Pages/searchPage.html`;
     });
