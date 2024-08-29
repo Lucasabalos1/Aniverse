@@ -327,5 +327,4 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 /*  
    Seguir buscando bugs
-   hacer que la id se guarde cada vez que se construye el evento
 */

@@ -136,7 +136,7 @@ main{
 
 .anime-image{
     width: 45%;
-    height: 200px;
+    height: auto;
 }
 
 .anime-image img{
@@ -149,6 +149,10 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.anime-id{
+    display: none;
 }
 
 .anime-title-cont{
@@ -210,7 +214,22 @@ main{
     font-weight: bold;
 }
 
+.results-controler{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
 
+.next_button,
+.prev_button{
+    width: 150px;
+    padding: 3px 0;
+    background: #f17416;
+    font-size: 1.1rem;
+    border: 1px solid black;
+}
+
+/*Crear responsive*/
 
 
 

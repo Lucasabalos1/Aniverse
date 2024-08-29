@@ -2,11 +2,84 @@ const genresAcordion = document.querySelector(".inferior-acordion-row");
 const acordionBtn = document.querySelector(".superior-acordion-row");
 const searchInput = document.querySelector(".search-input");
 const animeContainer = document.querySelector(".animes-result-cont");
-// optimizar la parte de dibujado de series para no repetir codigo
-//Agregar lo de currentPage
 
+const currentPage = {
+    page:1,
+
+    nextPage(){
+        this.page++;
+    },
+
+    previusPage(){
+        if (this.page > 1) {
+            this.page--;
+        }
+    },
+
+    getPage(){
+        this.page;
+    },
+
+    resetPages(){
+        this.page = 0;
+    }
+}
 const toggleAcordion = () => {
     genresAcordion.classList.toggle("show-acordion");
+}
+
+const redirectUser = (animeCard) => {
+    const getId = animeCard.querySelector(".anime-id").textContent.trim();
+    localStorage.setItem("idSerieActual", getId);
+    window.location.href = `../Pages/animeSelected.html`;
+};
+
+const drawCards = (results) => {
+    const animeCard = document.createElement("DIV");
+
+            animeCard.classList.add("anime-result");
+
+            animeCard.innerHTML = `
+                            <div class="anime-id"> ${results.mal_id} </div>
+                            <div class="anime-image">
+                                <img src="${results.images["webp"].large_image_url}" alt="anime-image">
+                            </div>
+                            <div class="data-anime-cont">
+                                <div class="anime-title-cont">
+                                    <span class="anime-title">${results.title}</span>
+                                </div>
+                                
+                                <div class="genres-cont">
+                                    <span class="gen">${results.genres[0].name}</span>
+                                    <span class="gen">${(results.genres.length > 1) ? results.genres[1].name : ""}</span>
+                                </div>
+
+                                <div class="anime-metadata">
+                                    <div class="studio-cont">
+                                        <span class="studio">Studio: ${results.studios[0].name}</span>
+                                    </div>
+
+                                    <div class="source-cont">
+                                        <span class="source">Source: ${results.source}</span>
+                                    </div>
+
+                                    <div class="demography-cont">
+                                        <span class="demography">Demography: ${(results.demographics.length > 0) ? results.demographics[0].name : "---"}</span>
+                                    </div>
+                                </div>
+
+                                <div class="redirect-button-cont">
+                                    <button class="redirect-button">More Info</button>
+                                </div>
+                            </div>
+            `
+            animeContainer.appendChild(animeCard);
+
+            const moreButton = animeCard.querySelector(".redirect-button");
+
+            moreButton.addEventListener("click", () => {
+                redirectUser(animeCard)
+            });
 }
 
 const loadGenres = async() => { 
@@ -33,8 +106,7 @@ const loadGenres = async() => {
         })
     }
 }
-
-//fixear
+//agregar lo de las paginas
 const loadFromInput = async(input) => {
     try {
         const url = `https://api.jikan.moe/v4/anime?q=${input}&limit=20`
@@ -45,46 +117,7 @@ const loadFromInput = async(input) => {
 
         let results = data.data;
         for (let index = 0; index < results.length; index++) {
-            const animeCard = document.createElement("DIV");
-
-            animeCard.classList.add("anime-result");
-
-            animeCard.innerHTML = `
-                            <div class="anime-image">
-                                <img src="${results[index].images["webp"].large_image_url}" alt="anime-image">
-                            </div>
-                            <div class="data-anime-cont">
-                                <div class="anime-title-cont">
-                                    <span class="anime-title">${results[index].title}</span>
-                                </div>
-                                
-                                <div class="genres-cont">
-                                    <span class="gen">${results[index].genres[0].name}</span>
-                                    <span class="gen">${(results[index].genres.length > 1) ? results[index].genres[1].name : ""}</span>
-                                </div>
-
-                                <div class="anime-metadata">
-                                    <div class="studio-cont">
-                                        <span class="studio">Studio: ${results[index].studios[0].name}</span>
-                                    </div>
-
-                                    <div class="source-cont">
-                                        <span class="source">Source: ${results[index].source}</span>
-                                    </div>
-
-                                    <div class="demography-cont">
-                                        <span class="demography">Demography: ${(results[index].demographics.length > 0) ? results[index].demographics[0].name : "---"}</span>
-                                    </div>
-                                </div>
-
-                                <div class="redirect-button-cont">
-                                    <button class="redirect-button">More Info</button>
-                                </div>
-                            </div>
-            `
-            animeContainer.appendChild(animeCard);
-
-        //Activar el evento para que me lleve a la serie
+            drawCards(results[index]);
     }
     } catch (error) {
         
@@ -101,46 +134,7 @@ const loadFromGenre = async(genre) => {
 
         let results = data.data;
         for (let index = 0; index < results.length; index++) {
-            const animeCard = document.createElement("DIV");
-
-            animeCard.classList.add("anime-result");
-
-            animeCard.innerHTML = `
-                            <div class="anime-image">
-                                <img src="${results[index].images["webp"].large_image_url}" alt="anime-image">
-                            </div>
-                            <div class="data-anime-cont">
-                                <div class="anime-title-cont">
-                                    <span class="anime-title">${results[index].title}</span>
-                                </div>
-                                
-                                <div class="genres-cont">
-                                    <span class="gen">${results[index].genres[0].name}</span>
-                                    <span class="gen">${(results[index].genres.length > 1) ? results[index].genres[1].name : ""}</span>
-                                </div>
-
-                                <div class="anime-metadata">
-                                    <div class="studio-cont">
-                                        <span class="studio">Studio: ${results[index].studios[0].name}</span>
-                                    </div>
-
-                                    <div class="source-cont">
-                                        <span class="source">Source: ${results[index].source}</span>
-                                    </div>
-
-                                    <div class="demography-cont">
-                                        <span class="demography">Demography: ${(results[index].demographics.length > 0) ? results[index].demographics[0].name : "---"}</span>
-                                    </div>
-                                </div>
-
-                                <div class="redirect-button-cont">
-                                    <button class="redirect-button">More Info</button>
-                                </div>
-                            </div>
-            `
-            animeContainer.appendChild(animeCard);
-
-        //Activar el evento para que me lleve a la serie
+            drawCards(results[index]);
     }
 
     } catch (error) {
@@ -157,6 +151,11 @@ searchInput.addEventListener("keydown", (event) => {
 
     if (searchInput.value === "") {
         alert("no se puede dejar vacio")
+        return;
+    }
+
+    if(searchInput.value.length <= 2){
+        alert("ingrese un caracter mayor a 3");
         return;
     }
 
