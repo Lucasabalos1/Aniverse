@@ -6,8 +6,46 @@ const currentList = localStorage.getItem("current-list");
 const userListBtn = document.getElementById("userListBtn");
 const popularListBtn = document.getElementById("popularListBtn");
 
-let currentPage = 1;
-let seriesCounter = 1;
+const currentControler = {
+  page:1,
+  seriesCounter: 1,
+
+  nextPage(){
+      this.page++;
+  },
+
+  previusPage(){
+      if (this.page > 1) {
+          this.page--;
+      }
+  },
+
+  getPage(){
+      return this.page;
+  },
+
+  resetPages(){
+      this.page = 1;
+  },
+
+  nextSerieCount(){
+    this.seriesCounter++;
+  },
+
+  previusSerieCount(){
+    if (this.seriesCounter > 1) {
+      this.seriesCounter--;
+    }
+  },
+
+  getSerieCount(){
+    return this.seriesCounter;
+  },
+
+  resetSeriesCounter(){
+    this.seriesCounter = 1;
+  }
+}
 
 const actions = {
     USER: () => {
@@ -97,7 +135,7 @@ const drawPopularSeries = (series) => {
 
     animeContainer.innerHTML = `
                             <div class="number-cont">
-                                <span>${seriesCounter}</span>
+                                <span>${currentControler.getSerieCount()}</span>
                             </div>
 
                             <div class="sleeve-cont">
@@ -132,7 +170,7 @@ const drawPopularSeries = (series) => {
                             </div>
             `;
     popularContainer.appendChild(animeContainer);
-    seriesCounter++;
+    currentControler.nextSerieCount();
   }
 };
 
@@ -147,13 +185,13 @@ const loadPopularSeries = async (page) => {
 };
 
 document.querySelector(".more-animes-btn").addEventListener("click", () => {
-  currentPage++;
-  loadPopularSeries(currentPage);
+  currentControler.nextPage();
+  loadPopularSeries(currentControler.getPage());
 });
 
 document.addEventListener("DOMContentLoaded", loadFavoriteSeries);
 document.addEventListener("DOMContentLoaded", () => {
-  loadPopularSeries(currentPage);
+  loadPopularSeries(currentControler.getPage());
 });
 document.addEventListener("DOMContentLoaded", () => {
   

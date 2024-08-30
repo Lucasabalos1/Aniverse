@@ -4,7 +4,7 @@ const lateralMenu = document.querySelector(".menu-lateral-container");
 const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const formBtn = document.getElementById("send-button");
-const searchBtns = document.querySelectorAll(".search-button");
+const searchBtnSuperior = document.querySelector(".search-button");
 const genres = document.querySelectorAll(".genre");
 const searchActual = localStorage.getItem("serieSearch");
 const genreActual = localStorage.getItem("genreActual")
@@ -50,22 +50,35 @@ document.getElementById("form").addEventListener("submit", (event) => {
       });
 })
 
-searchBtns.forEach((searchBtn) => {
-    searchBtn.addEventListener("click", () => {
-        const getInputSearch = document.querySelector(".serieInput").value
+searchBtnSuperior.addEventListener("click", () => {
+    const getInputSearch = document.querySelector(".serieInput").value
     
-        localStorage.setItem("serieSearch", getInputSearch)
+    localStorage.setItem("serieSearch", getInputSearch);
+    localStorage.setItem("genreActual", "")
     
-        window.location.href = `../Pages/searchPage.html`;
-    })
-});
+    window.location.href = `../Pages/searchPage.html`;
+})
+
+//falta arreglar error que no toma desde el mobile
+
+const getGenreId = async(genreName) => {
+    const url = `https://api.jikan.moe/v4/genres/anime`;
+
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    const getGen = data.data.find(gen => gen.name === genreName)
+
+    return getGen.mal_id;
+}
 
 genres.forEach((genre) => {
-    genre.addEventListener("click", () => {
-        //refactorizar y hacer que me de su ID
-        const getGen = genre.textContent;
+    genre.addEventListener("click", async() => {
+        const getGen = await getGenreId(genre.textContent);
 
         localStorage.setItem("genreActual", getGen)
+        localStorage.setItem("serieSearch", "");
 
         window.location.href = `../Pages/searchPage.html`;
     });

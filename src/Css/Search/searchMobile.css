@@ -162,7 +162,7 @@ main{
 }
 
 .anime-title{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: var(--header-color);
 }
@@ -226,7 +226,12 @@ main{
     padding: 3px 0;
     background: #f17416;
     font-size: 1.1rem;
-    border: 1px solid black;
+    border: 1px solid #333;
+}
+
+.next_button:hover,
+.prev_button:hover{
+    cursor: pointer;
 }
 
 /*Crear responsive*/

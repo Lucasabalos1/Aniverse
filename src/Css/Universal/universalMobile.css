@@ -177,7 +177,8 @@ nav{
     width: 100%;
 }
 
-.search-button{
+.search-button,
+.search-button-mobile{
     width: 35px;
     height: 35px;
     background: var(--search-background);
@@ -188,11 +189,13 @@ nav{
     transform: translateX(-45px);
 }
 
-.search-button:hover{
+.search-button:hover,
+.search-button-mobile:hover{
     background: var(--header-color)
 }
 
-.search-button i{
+.search-button i,
+.search-button-mobile i{
     color: var(--white-color);
 }
 

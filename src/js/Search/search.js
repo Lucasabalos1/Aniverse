@@ -2,6 +2,8 @@ const genresAcordion = document.querySelector(".inferior-acordion-row");
 const acordionBtn = document.querySelector(".superior-acordion-row");
 const searchInput = document.querySelector(".search-input");
 const animeContainer = document.querySelector(".animes-result-cont");
+const prevBtn = document.querySelector(".prev_button");
+const nextBtn = document.querySelector(".next_button");
 
 const currentPage = {
     page:1,
@@ -17,13 +19,14 @@ const currentPage = {
     },
 
     getPage(){
-        this.page;
+        return this.page;
     },
 
     resetPages(){
-        this.page = 0;
+        this.page = 1;
     }
 }
+
 const toggleAcordion = () => {
     genresAcordion.classList.toggle("show-acordion");
 }
@@ -50,13 +53,13 @@ const drawCards = (results) => {
                                 </div>
                                 
                                 <div class="genres-cont">
-                                    <span class="gen">${results.genres[0].name}</span>
-                                    <span class="gen">${(results.genres.length > 1) ? results.genres[1].name : ""}</span>
+                                    <span class="gen">${(results.genres.length > 0) ? results.genres[0].name: "?"}</span>
+                                    <span class="gen">${(results.genres.length > 1) ? results.genres[1].name : "?"}</span>
                                 </div>
 
                                 <div class="anime-metadata">
                                     <div class="studio-cont">
-                                        <span class="studio">Studio: ${results.studios[0].name}</span>
+                                        <span class="studio">Studio: ${(results.studios.length > 0) ? results.studios[0].name : "?"}</span>
                                     </div>
 
                                     <div class="source-cont">
@@ -106,10 +109,10 @@ const loadGenres = async() => {
         })
     }
 }
-//agregar lo de las paginas
-const loadFromInput = async(input) => {
+
+const loadFromInput = async(input, page) => {
     try {
-        const url = `https://api.jikan.moe/v4/anime?q=${input}&limit=20`
+        const url = `https://api.jikan.moe/v4/anime?q=${input}&limit=20&page=${page}`
 
         let response = await fetch(url);
 
@@ -118,31 +121,44 @@ const loadFromInput = async(input) => {
         let results = data.data;
         for (let index = 0; index < results.length; index++) {
             drawCards(results[index]);
-    }
+        }
+
+        if (!data.pagination.has_next_page) {
+            nextBtn.setAttribute("disabled", "true")
+        }else{
+            nextBtn.removeAttribute("disabled")
+        }
+        
     } catch (error) {
         
     }
 }
 
-const loadFromGenre = async(genre) => {
+const loadFromGenre = async(genre, page) => {
     try {
-        const url = `https://api.jikan.moe/v4/anime?genres=${genre}&limit=20`
+        const url = `https://api.jikan.moe/v4/anime?genres=${genre}&limit=20&page=${page}`
 
         let response = await fetch(url);
 
         let data = await response.json();
 
         let results = data.data;
+        
         for (let index = 0; index < results.length; index++) {
             drawCards(results[index]);
-    }
+        }
+
+        if (!data.pagination.has_next_page) {
+            nextBtn.setAttribute("disabled", "true")
+        }else{
+            nextBtn.removeAttribute("disabled")
+        }
 
     } catch (error) {
-      console.log("La api fallo")  
+      console.log("La api fallo")
+      console.log(error)
     }
 }
-
-acordionBtn.addEventListener("click", toggleAcordion);
 
 searchInput.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") {
@@ -167,7 +183,46 @@ searchInput.addEventListener("keydown", (event) => {
 document.addEventListener("DOMContentLoaded", () => {
     loadGenres();
 
-    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual) : () => loadFromGenre(genreActual);
+    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual, 1) : () => loadFromGenre(genreActual,1);
 
     functionToLoad();
+
+    if (currentPage.getPage() === 1) {
+        prevBtn.setAttribute("disabled", "true");
+    }
 });
+
+nextBtn.addEventListener("click", () => {
+    currentPage.nextPage();
+
+    acordionBtn.scrollIntoView({behavior: "smooth"});
+
+    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual, currentPage.getPage()) : () => loadFromGenre(genreActual,currentPage.getPage());
+
+    animeContainer.innerHTML= ""
+
+    functionToLoad();
+
+    if (currentPage.getPage() > 1 && prevBtn.hasAttribute("disabled")) {
+        prevBtn.removeAttribute("disabled")
+    }
+});
+
+prevBtn.addEventListener("click", () => {
+    currentPage.previusPage();
+
+    acordionBtn.scrollIntoView({behavior: "smooth"});
+
+    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual, currentPage.getPage()) : () => loadFromGenre(genreActual,currentPage.getPage());
+
+    animeContainer.innerHTML= ""
+
+    functionToLoad();
+
+    if (currentPage.getPage() === 1) {
+        prevBtn.setAttribute("disabled", "true");
+    }
+
+});
+
+acordionBtn.addEventListener("click", toggleAcordion);
