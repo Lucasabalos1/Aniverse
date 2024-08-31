@@ -180,18 +180,6 @@ searchInput.addEventListener("keydown", (event) => {
     window.location.reload();
 })
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadGenres();
-
-    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual, 1) : () => loadFromGenre(genreActual,1);
-
-    functionToLoad();
-
-    if (currentPage.getPage() === 1) {
-        prevBtn.setAttribute("disabled", "true");
-    }
-});
-
 nextBtn.addEventListener("click", () => {
     currentPage.nextPage();
 
@@ -226,3 +214,17 @@ prevBtn.addEventListener("click", () => {
 });
 
 acordionBtn.addEventListener("click", toggleAcordion);
+
+document.addEventListener("DOMContentLoaded", async() => {
+    loadGenres();
+
+    const functionToLoad = (searchActual !== "" && genreActual === "") ? () => loadFromInput(searchActual, 1) : () => loadFromGenre(genreActual,1);
+
+    functionToLoad();
+
+    if (currentPage.getPage() === 1) {
+        prevBtn.setAttribute("disabled", "true");
+    }
+
+    document.querySelector(".message").innerHTML = (searchActual != "") ? `RESULTS FOR ${searchActual}` : (genreActual != "" && searchActual === "" ) ? `RESULTS FOR ${await getGenreName(genreActual)}` : ""; 
+});

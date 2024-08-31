@@ -52,6 +52,7 @@ main{
     padding: 12px 0;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .genre-title{
@@ -116,6 +117,8 @@ main{
 }
 
 .result-message{
+    width: 90%;
+    margin: 0 auto;
     padding: 10px 0;
 }
 

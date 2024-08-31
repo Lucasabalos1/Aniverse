@@ -8,7 +8,7 @@ const searchBtnSuperior = document.querySelector(".search-button");
 const genres = document.querySelectorAll(".genre");
 const searchActual = localStorage.getItem("serieSearch");
 const genreActual = localStorage.getItem("genreActual")
-
+//agregar la llamada a la api global
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
     lateralMenu.classList.toggle("visible-menu");
@@ -71,6 +71,18 @@ const getGenreId = async(genreName) => {
     const getGen = data.data.find(gen => gen.name === genreName)
 
     return getGen.mal_id;
+}
+
+const getGenreName = async(genreId) => {
+    const url = `https://api.jikan.moe/v4/genres/anime`;
+
+    const response = await fetch(url);
+
+    const data = await response.json();
+
+    const getGen = data.data.find(gen => gen.mal_id === parseInt(genreId))
+
+    return getGen.name;
 }
 
 genres.forEach((genre) => {
