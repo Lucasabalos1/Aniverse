@@ -4,15 +4,21 @@ const lateralMenu = document.querySelector(".menu-lateral-container");
 const modalBtn = document.querySelector(".modal-button");
 const closeBtn = document.getElementById("close-modal-button");
 const formBtn = document.getElementById("send-button");
-const searchBtnSuperior = document.querySelector(".search-button");
+const searchBtns = document.querySelectorAll(".search-button");
 const genres = document.querySelectorAll(".genre");
 const searchActual = localStorage.getItem("serieSearch");
 const genreActual = localStorage.getItem("genreActual")
-//agregar la llamada a la api global
+
 const toggleMenu = () =>{
     modal.classList.toggle("visible-modal");
     lateralMenu.classList.toggle("visible-menu");
     document.body.style.overflow = (modal.classList.contains("visible-modal") ? "hidden" : "scroll")
+}
+
+const callForApi = async(url) => {
+    let response = await fetch(url);
+    let data = await response.json();
+    return data.data;
 }
 
 const closeSesion = () => {
@@ -50,16 +56,18 @@ document.getElementById("form").addEventListener("submit", (event) => {
       });
 })
 
-searchBtnSuperior.addEventListener("click", () => {
-    const getInputSearch = document.querySelector(".serieInput").value
-    
-    localStorage.setItem("serieSearch", getInputSearch);
-    localStorage.setItem("genreActual", "")
-    
-    window.location.href = `../Pages/searchPage.html`;
-})
+searchBtns.forEach((searchbtn) => {
+    searchbtn.addEventListener("click", () => {
+        const getParent = searchbtn.parentElement; 
 
-//falta arreglar error que no toma desde el mobile
+        const getInputSearch = getParent.querySelector(".serieInput").value
+        
+        localStorage.setItem("serieSearch", getInputSearch);
+        localStorage.setItem("genreActual", "")
+
+        window.location.href = `../Pages/searchPage.html`;
+    })
+});
 
 const getGenreId = async(genreName) => {
     const url = `https://api.jikan.moe/v4/genres/anime`;

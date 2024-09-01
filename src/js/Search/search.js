@@ -89,21 +89,19 @@ const loadGenres = async() => {
     const url = `https://api.jikan.moe/v4/genres/anime`;
     const genresList = document.getElementById("ul_genres");
 
-    let response = await fetch(url);
+    const results = await callForApi(url);
 
-    let data = await response.json();
-
-    for (let index = 0; index < data.data.length; index++) {
+    for (let index = 0; index < results.length; index++) {
         const li_gen = document.createElement("LI");
         
         li_gen.classList.add("li_genre");
 
-        li_gen.innerHTML = `${data.data[index].name}`;
+        li_gen.innerHTML = `${results[index].name}`;
 
         genresList.appendChild(li_gen);
 
         li_gen.addEventListener("click", () => {
-            localStorage.setItem("genreActual", (data.data[index].mal_id));
+            localStorage.setItem("genreActual", (results[index].mal_id));
             localStorage.setItem("serieSearch", "");
             window.location.reload(); 
         })

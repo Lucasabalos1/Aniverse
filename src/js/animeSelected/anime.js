@@ -29,16 +29,15 @@ const createSerie = async(serieId) =>{
         const url = `https://api.jikan.moe/v4/anime/${serieId}`;
 
         try {
-            let response = await fetch(url);
-            
-            let data = await response.json();
+            const data = await callForApi(url);
+
 
             const serie = {
-                serie_id: data.data.mal_id,
-                image: data.data.images["webp"].large_image_url,
-                name: data.data.title,
-                type:data.data.type ,
-                episodes: (data.data.episodes != null)  ? data.data.episodes : "?",
+                serie_id: data.mal_id,
+                image: data.images["webp"].large_image_url,
+                name: data.title,
+                type:data.type ,
+                episodes: (data.episodes != null)  ? data.episodes : "?",
                 score: "0"
             };
 
@@ -308,12 +307,11 @@ const loadInfoSection = async (serieId) => {
     const url = `https://api.jikan.moe/v4/anime/${serieId}`
     
     try {
-        let response = await fetch(url);
+        const data = await callForApi(url);
 
-        let data = await response.json();
 
-        drawSuperiorSection(data.data);
-        drawMiddleSection(data.data);
+        drawSuperiorSection(data);
+        drawMiddleSection(data);
     } catch (error) {
         console.log(error)
     }
@@ -329,20 +327,18 @@ const toggleCharacterModal = () =>{
 
 const drawSwipperGalery = async(url) =>{
     try {
-        let response = await fetch(url)
-
-        let data = await response.json();
+        const data = await callForApi(url);
 
         const swiperGallery = document.querySelector(".swiper-wrapper");
 
         swiperGallery.innerHTML = "";
 
-        for (let index = 0; index < data.data.length; index++) {
+        for (let index = 0; index < data.length; index++) {
             let slide = document.createElement("DIV");
 
             slide.classList.add("swiper-slide");
 
-            slide.innerHTML = `<img src="${data.data[index].jpg.image_url}" alt="character-image">`
+            slide.innerHTML = `<img src="${data[index].jpg.image_url}" alt="character-image">`
 
             swiperGallery.appendChild(slide);
         }
@@ -367,9 +363,7 @@ const drawSwipperGalery = async(url) =>{
 
 const drawCharacterInfo = async(url) => {   
     try {
-        let response = await fetch(url)
-
-        let data = await response.json();
+        const data = await callForApi(url);
 
         const dataCharacterContainer = document.querySelector(".character-data-cont");
 
@@ -379,7 +373,7 @@ const drawCharacterInfo = async(url) => {
 
         info.classList.add("info-character");
 
-        let about = data.data.about;
+        let about = data.about;
 
         info.innerHTML = `
                 <div class="info-character-cont">
@@ -418,11 +412,9 @@ const loadCharacterSection = async (serieId,start,end) => {
     try {
         const url = `https://api.jikan.moe/v4/anime/${serieId}/characters`
 
-        let response = await fetch(url);
+        const data = await callForApi(url);
 
-        let data = await response.json();
-
-        let dataLimited = data.data.slice(start, end); 
+        let dataLimited = data.slice(start, end); 
 
         infoInferiorSection.innerHTML = "";
 

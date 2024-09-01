@@ -177,11 +177,10 @@ const drawPopularSeries = (series) => {
 const loadPopularSeries = async (page) => {
   const url = `https://api.jikan.moe/v4/top/anime?page=${page}`;
 
-  let response = await fetch(url);
+  const data = await callForApi(url);
 
-  let data = await response.json();
 
-  drawPopularSeries(data.data);
+  drawPopularSeries(data);
 };
 
 document.querySelector(".more-animes-btn").addEventListener("click", () => {

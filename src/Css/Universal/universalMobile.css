@@ -129,27 +129,6 @@ nav{
     margin: 10px;
 }
 
-#change-of-colors-button{
-    width: 70px;
-    height: 30px;
-    background: var(--change-color);
-    border-radius: 20px;
-    border: none;
-    padding: 10px;
-    position: relative;
-}
-
-#change-of-colors-button::after{
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 5px;
-    right: 5px;
-    background: var(--white-color);
-    border-radius: 20px;
-}
-
 #close-modal-button{
     width: 30px;
     height: 30px;
