@@ -5,6 +5,8 @@ const popularList = document.querySelector(".popular-list-section");
 const currentList = localStorage.getItem("current-list");
 const userListBtn = document.getElementById("userListBtn");
 const popularListBtn = document.getElementById("popularListBtn");
+const modalEdit = document.querySelector(".modal-background-container");
+const closeEditModal = document.getElementById("close-edit-button");
 
 const currentControler = {
   page:1,
@@ -74,6 +76,67 @@ const toggleList = (btn) => {
   }
 };
 
+const editScore = (score, animeId, animeContainer) => {
+  let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
+
+  let user = storageData.usuarios.find(u => u.user_id === userId);
+
+  let serie = user.series.find(s => s.serie_id === parseInt(animeId));
+
+  serie.score = score;
+  
+  localStorage.setItem("seriesPorUsuario", JSON.stringify(storageData));
+
+  alert("Cambios realizados, actualize la pagina para efectuar los cambios")
+
+  const currentScore = animeContainer.querySelector(".score");
+  
+  currentScore.innerHTML = score;
+}
+
+const editModal = async(animeId, animeContainer) => {
+  const modalInfoCont = document.querySelector(".modal-info-cont");
+
+  modalInfoCont.innerHTML = ""
+
+  //cambiar por obtener desde el localStorage 
+  const results = await callForApi(`https://api.jikan.moe/v4/anime/${animeId}`);
+
+  const editCont = document.createElement("DIV");
+
+  editCont.classList.add("edit-cont");
+
+  editCont.innerHTML = `
+        <div class="image-modal-cont">
+                <img src="${results.images["webp"].large_image_url}" alt="anime-image">
+            </div>
+            <div class="info-anime-cont">
+                <div class="anime-modal-title-cont">
+                    <span class="anime-modal-title">${results.title}</span>
+                </div>
+                <div class="score-input-cont">
+                    <input type="number" id="score-input" class="score-input" min="0" max="10" maxlength="2" placeholder="score">
+                    <button class="submit-score">Save</button>
+                </div>
+          </div>
+  `
+  modalInfoCont.appendChild(editCont);
+  editCont.querySelector(".submit-score").addEventListener("click", () => {
+    const newScore = editCont.querySelector(".score-input").value;
+
+    if (newScore === "" || newScore > 10) {
+      return;
+    }
+
+    editScore(newScore, animeId, animeContainer)
+  });
+}
+
+const showModalEdit = () => {
+  modalEdit.classList.toggle("show-edit-modal");
+  document.body.style.overflow = (modalEdit.classList.contains("show-edit-modal")) ? "hidden" : "scroll";
+}
+
 const drawFavoritesSeries = (series) => {
   for (let index = 0; index < series.length; index++) {
     let animeContainer = document.createElement("DIV");
@@ -81,6 +144,8 @@ const drawFavoritesSeries = (series) => {
     animeContainer.classList.add("anime-cont");
 
     animeContainer.innerHTML = `
+                             <div class="anime-id">${series[index].serie_id}</div>
+    
                             <div class="number-cont">
                                 <span>${index + 1}</span>
                             </div>
@@ -114,6 +179,15 @@ const drawFavoritesSeries = (series) => {
             `;
 
     favoriteContainer.appendChild(animeContainer);
+
+    const editBtn = animeContainer.querySelector(".edit");
+    
+    editBtn.addEventListener("click", () => {
+      showModalEdit();
+      const getEdit = animeContainer.querySelector(".anime-id").innerHTML
+      editModal(getEdit, animeContainer);      
+    });
+    
   }
 };
 
@@ -179,7 +253,6 @@ const loadPopularSeries = async (page) => {
 
   const data = await callForApi(url);
 
-
   drawPopularSeries(data);
 };
 
@@ -214,3 +287,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 userListBtn.addEventListener("click", () => toggleList(userListBtn));
 popularListBtn.addEventListener("click", () => toggleList(popularListBtn));
+closeEditModal.addEventListener("click", showModalEdit)
