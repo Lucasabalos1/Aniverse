@@ -37,6 +37,12 @@
         z-index: 2;
         transform: translateX(50px) translateY(170px);
    }
+   
+   .description{
+     color: #777;
+     font-size: 0.7rem;
+     font-weight: bold;
+   }
 
    .swiper-pagination{
         text-align: start;

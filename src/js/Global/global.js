@@ -16,29 +16,28 @@ const toggleMenu = () =>{
 }
 
 const callForApi = async(url) => {
-    let response = await fetch(url);
-    let data = await response.json();
-    return data.data;
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+        return data.data;
+    } catch (error) {
+        console.log(`API call failed: ${error.message}`)
+    }
 }
 
 const closeSesion = () => {
     localStorage.removeItem("sesionActual");
-    location.reload();
+    location.href = `../index.html`
 }
 
 const verifyMail = () => {
     const email = document.getElementById("email_input").value;
-    return ["@gmail.com", "@hotmail.com", "@outlook"].some(domain => email.includes(domain));
+    return ["@gmail.com", "@hotmail.com", "@outlook.com"].some(domain => email.includes(domain));
 }
 
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (!verifyMail()) {
-        alert("Por favor, ingrese un correo electrónico válido con uno de los siguientes dominios: @gmail.com/.ar, @outlook.com/.ar, @hotmail.com/.ar");
-        return;
-    }
-    
     formBtn.value = "ENVIANDO EMAIL...";
 
     const serviceID = 'default_service';
@@ -54,7 +53,7 @@ document.getElementById("form").addEventListener("submit", (event) => {
         console.log('Correo no enviado!');
         alert(JSON.stringify(err));
       });
-})
+});
 
 searchBtns.forEach((searchbtn) => {
     searchbtn.addEventListener("click", () => {
@@ -70,33 +69,41 @@ searchBtns.forEach((searchbtn) => {
 });
 
 const getGenreId = async(genreName) => {
-    const url = `https://api.jikan.moe/v4/genres/anime`;
-
-    const response = await fetch(url);
-
-    const data = await response.json();
-
-    const getGen = data.data.find(gen => gen.name === genreName)
-
-    return getGen.mal_id;
+    try {
+        const url = `https://api.jikan.moe/v4/genres/anime`;
+    
+        const response = await fetch(url);
+    
+        const data = await response.json();
+    
+        const getGen = data.data.find(gen => gen.name === genreName)
+    
+        return getGen.mal_id;
+    } catch (error) {
+        console.log(`API call failed: ${error.message}`)
+    }
 }
 
+//TODO
 const getGenreName = async(genreId) => {
-    const url = `https://api.jikan.moe/v4/genres/anime`;
-
-    const response = await fetch(url);
-
-    const data = await response.json();
-
-    const getGen = data.data.find(gen => gen.mal_id === parseInt(genreId))
-
-    return getGen.name;
+   try {
+     const url = `https://api.jikan.moe/v4/genres/anime`;
+ 
+     const response = await fetch(url);
+ 
+     const data = await response.json();
+ 
+     const getGen = data.data.find(gen => gen.mal_id === parseInt(genreId))
+ 
+     return getGen.name;
+   } catch (error) {
+    console.log(`API call failed: ${error.message}`)
+}
 }
 
 genres.forEach((genre) => {
     genre.addEventListener("click", async() => {
         const getGen = await getGenreId(genre.textContent);
-
         localStorage.setItem("genreActual", getGen)
         localStorage.setItem("serieSearch", "");
 

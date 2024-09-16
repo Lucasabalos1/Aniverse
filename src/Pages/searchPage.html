@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buscardor de animes a traves de un nombre o un genero">
     <title>Document</title>
     <link rel="stylesheet" href="../Css/Universal/universalMobile.css">
-    <link rel="stylesheet" href="../Css/Universal/UniversalDesktop.css">
+    <link rel="preload" href="../Css/Universal/UniversalDesktop.css" as="style" onload="this.rel='stylesheet'" media="(min-width: 1024px)">
     <link rel="stylesheet" href="../Css/Search/searchMobile.css">
     <link rel="stylesheet" href="../Css/Search/searchDesktop.css">
     <link rel="shortcut icon" href="../Images/Kintoun.webp" type="image/png"/>
@@ -49,20 +50,20 @@
                         <a href="../index.html">HOME</a>
                     </li>
                     <li>
-                        <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                        <a href="../Pages/searchPage.html">ADVANCE SEARCH</a>
                     </li>
                 </ul>
                     
                 <div class="search-container">
                     <input type="text" class="serieInput" placeholder="ingrese una serie...">
-                    <button class="search-button">
+                    <button class="search-button" aria-label="search anime">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
 
                 <div class="login-cont">
                     <div class="link-cont">
-                        <a href="LoginAndRegister.html">LOGIN</a>
+                        <a href="../Pages/LoginAndRegister.html">LOGIN</a>
                     </div>
                     <div class="user-logout-cont hidden-toggle">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -117,8 +118,8 @@
                 </div>
 
                 <div class="results-controler">
-                    <button class="prev_button">Previous Results</button>
-                    <button class="next_button">Next Results</button>
+                    <button class="prev_button" aria-label="prev page button">Previous Results</button>
+                    <button class="next_button" aria-label="next page button">Next Results</button>
                 </div>
             </section>
         </div>
@@ -162,7 +163,7 @@
 
                 <ul class="footer_ul">
                     <li><a href="../index.html">HOME</a></li>
-                    <li><a href="advanceSearch.html">ADVANCE SEARCH</a></li>
+                    <li><a href="../Pages/searchPage.html">ADVANCE SEARCH</a></li>
                 </ul>
             </div>
         </section>
@@ -181,7 +182,7 @@
 
             <div class="search-container">
                 <input type="text" class="serieInput" placeholder="ingrese una serie...">
-                <button class="search-button">
+                <button class="search-button" aria-label="search button mobile">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -189,7 +190,7 @@
             <ul class="ul_menu_lateral">
                 <li class="login-cont">
                     <div class="link-cont-mobile">
-                        <a href="LoginAndRegister.html">LOGIN</a>
+                        <a href="../Pages/LoginAndRegister.html">LOGIN</a>
                     </div>
                     <div class="user-logout-cont-mobile hidden-toggle">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -199,7 +200,7 @@
                     <a href="../index.html">HOME</a>
                 </li>
                 <li>
-                    <a href="advanceSearch.html">ADVANCE SEARCH</a>
+                    <a href="../Pages/searchPage.html">ADVANCE SEARCH</a>
                 </li>
             </ul>
 
@@ -218,7 +219,7 @@
                         <span class="genre">Adventure</span>
                     </li>
                     <li>
-                        <span class="genre">Awant Garde</span>
+                        <span class="genre">Avant Garde</span>
                     </li>
                     <li>
                         <span class="genre">Award Winning</span>
@@ -239,7 +240,7 @@
                         <span class="genre">Girls Love</span>
                     </li>
                     <li>
-                        <span class="genre">Gourment</span>
+                        <span class="genre">Gourmet</span>
                     </li>
                     <li>
                         <span class="genre">Horror</span>
@@ -254,7 +255,7 @@
                         <span class="genre">Sci-Fi</span>
                     </li>
                     <li>
-                        <span class="genre">Slice of life</span>
+                        <span class="genre">Slice of Life</span>
                     </li>
                     <li>
                         <span class="genre">Sports</span>

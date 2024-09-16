@@ -45,7 +45,7 @@ const drawCards = (results) => {
             animeCard.innerHTML = `
                             <div class="anime-id"> ${results.mal_id} </div>
                             <div class="anime-image">
-                                <img src="${results.images["webp"].large_image_url}" alt="anime-image">
+                                <img src="${results.images["webp"].large_image_url}" alt="anime-image" loading="lazy">
                             </div>
                             <div class="data-anime-cont">
                                 <div class="anime-title-cont">
@@ -86,25 +86,29 @@ const drawCards = (results) => {
 }
 
 const loadGenres = async() => { 
-    const url = `https://api.jikan.moe/v4/genres/anime`;
-    const genresList = document.getElementById("ul_genres");
-
-    const results = await callForApi(url);
-
-    for (let index = 0; index < results.length; index++) {
-        const li_gen = document.createElement("LI");
-        
-        li_gen.classList.add("li_genre");
-
-        li_gen.innerHTML = `${results[index].name}`;
-
-        genresList.appendChild(li_gen);
-
-        li_gen.addEventListener("click", () => {
-            localStorage.setItem("genreActual", (results[index].mal_id));
-            localStorage.setItem("serieSearch", "");
-            window.location.reload(); 
-        })
+    try {
+        const url = `https://api.jikan.moe/v4/genres/anime`;
+        const genresList = document.getElementById("ul_genres");
+    
+        const results = await callForApi(url);
+    
+        for (let index = 0; index < results.length; index++) {
+            const li_gen = document.createElement("LI");
+            
+            li_gen.classList.add("li_genre");
+    
+            li_gen.innerHTML = `${results[index].name}`;
+    
+            genresList.appendChild(li_gen);
+    
+            li_gen.addEventListener("click", () => {
+                localStorage.setItem("genreActual", (results[index].mal_id));
+                localStorage.setItem("serieSearch", "");
+                window.location.reload(); 
+            })
+        }
+    } catch (error) {
+        console.log(`API call failed: ${error.message}`)
     }
 }
 
@@ -128,7 +132,8 @@ const loadFromInput = async(input, page) => {
         }
         
     } catch (error) {
-        
+        console.log(`API call failed: ${error.message}`)
+
     }
 }
 

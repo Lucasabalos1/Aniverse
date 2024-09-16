@@ -123,7 +123,6 @@ const drawSuperiorSection = (serie) => {
     infoSuperiorContainer.classList.add("anime-info-superior-container");
 
     infoSuperiorContainer.innerHTML = `
-                        
                         <div class="anime-title-cont">
                             <span class="anime-title">${serie.title.toUpperCase()}</span>
                         </div>
@@ -132,7 +131,7 @@ const drawSuperiorSection = (serie) => {
 
                         <div class="anime-card">
                             <div class="anime-image">
-                                <img src="${serie.images["webp"].large_image_url}" alt="anime-portada">
+                                <img src="${serie.images["webp"].large_image_url}" alt="anime-portada" loading="lazy" width="100%" height="auto">
                             </div>
 
                             <div class="anime-card-info">
@@ -157,7 +156,7 @@ const drawSuperiorSection = (serie) => {
                                     </div>
                                 </div>
                                 <div class="buttons-cont">
-                                    <button class="favorite-button">
+                                    <button class="favorite-button" aria-label="add anime favorite">
                                         <span class="logo">
                                             <i class="fa-solid fa-heart"></i>
                                         </span>
@@ -166,7 +165,7 @@ const drawSuperiorSection = (serie) => {
 
                                     <div class="score-input-cont">
                                         <input type="number" id="score-input" class="score-input" min="0" max="10" maxlength="2" placeholder="score">
-                                        <button class="submit-score">Save</button>
+                                        <button class="submit-score" aria-label="submit anime score">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +281,7 @@ const drawCharacterCard = (serie) => {
                                 <div class="character-id">${serie.character.mal_id}</div>
 
                                 <div class="character-image-cont">
-                                    <img src="${serie.character.images["webp"].image_url}" alt="character-image">
+                                    <img src="${serie.character.images["webp"].image_url}" alt="character-image" loading="lazy" width="100%" height="auto">
                                 </div>
                                 <div class="character-data">
                                     <span class="character-name">${serie.character.name}</span>
@@ -296,7 +295,7 @@ const drawCharacterCard = (serie) => {
                                     <span class="seiyuu-nationality">${(serie.voice_actors.length > 0) ? serie.voice_actors[0].language : ""}</span>
                                 </div>
                                 <div class="seiyuu-image-cont">
-                                    <img src="${(serie.voice_actors.length > 0) ? serie.voice_actors[0].person.images["jpg"].image_url : ""}" alt="seiyuu-image">
+                                    <img src="${(serie.voice_actors.length > 0) ? serie.voice_actors[0].person.images["jpg"].image_url : ""}" alt="seiyuu-image" loading="lazy" width="100%" height="auto">
                                 </div>
                             </div>
     `
@@ -305,11 +304,8 @@ const drawCharacterCard = (serie) => {
 
 const loadInfoSection = async (serieId) => {
     const url = `https://api.jikan.moe/v4/anime/${serieId}`
-    
     try {
         const data = await callForApi(url);
-
-
         drawSuperiorSection(data);
         drawMiddleSection(data);
     } catch (error) {
@@ -338,7 +334,7 @@ const drawSwipperGalery = async(url) =>{
 
             slide.classList.add("swiper-slide");
 
-            slide.innerHTML = `<img src="${data[index].jpg.image_url}" alt="character-image">`
+            slide.innerHTML = `<img src="${data[index].jpg.image_url}" alt="character-image" loading="lazy" width="100%" height="auto">`
 
             swiperGallery.appendChild(slide);
         }
@@ -446,5 +442,5 @@ document.querySelector(".more-character-btn").addEventListener("click", loadMore
 
 /*
 A futuro: 
--optimizar el codigo para que no se repita
+Reestructurar la seccion de characters
 */

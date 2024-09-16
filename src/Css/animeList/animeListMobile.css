@@ -164,7 +164,7 @@ main{
     place-items: center;
     text-align: center;
     font-weight: bold;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 }
 
 .anime-type-cont,
@@ -247,7 +247,7 @@ main{
 
 .image-modal-cont{
     width: 40%;
-    height: 170px;
+    height: 225px;
 }
 
 .image-modal-cont img{

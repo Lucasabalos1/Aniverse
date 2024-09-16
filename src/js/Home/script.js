@@ -1,7 +1,3 @@
-/*
-Obtener por generos
-https://api.jikan.moe/v4/anime?genres=1&limit=20*/
-
 const swiperWelcomeWrapper = document.getElementById("swiper-welcome-wrapper");
 const swiperPopularWrapper = document.getElementById("swiper-popular-wrapper");
 const swiperUserListWrapper = document.getElementById("swiper-user-list-wrapper");
@@ -79,15 +75,15 @@ const drawInWelcome = (serie, serieId) => {
     
     slide.innerHTML = `
          <div class="anime-id">${serieId}</div>
-         <img src="${serie.images["webp"].large_image_url}" alt="anime-image">
+         <img src="${serie.images["webp"].large_image_url}" alt="anime-image" loading="lazy">
          <div class="more-info-button-cont">
-            <button class="more-info-button">More Information</button>
+            <button class="more-info-button" aria-label="more anime info button">More Information</button>
          </div>
          <div class="serie-name-cont">
             <span class="serie-name">${serie.title.toUpperCase()}</span>
          </div>
          <div class ="serie-descr-cont">
-            <span class = "description">${serie.synopsis}</span>
+            <span class ="description">${serie.synopsis}</span>
          </div>
     `
     swiperWelcomeWrapper.appendChild(slide);
@@ -140,7 +136,7 @@ const drawPopularAnime = (series) => {
         <a class="popular-anime" href="">
             <div class="anime-id">${serie.mal_id}</div>
             <div class="image-swiper-cont">
-                <img src="${serie.images["webp"].large_image_url}" alt="popular-image">
+                <img src="${serie.images["webp"].large_image_url}" alt="popular-image" loading="lazy">
                 <div class="anime-title-cont">
                     <span class="anime-title">${serie.title.toUpperCase()}</span>
                 </div>
@@ -186,8 +182,9 @@ const inicializeSwipperUserList = () => {
 
 const inicializeUserListSection = () => {    
     let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
-    
-    if (!storageData) {
+    let existUser  = storageData.usuarios.some(u => u.user_id === userId);
+
+    if (!existUser) {
         showMessageEmptyList();
         return;
     }
@@ -207,7 +204,7 @@ const inicializeUserListSection = () => {
         <a class="user-series" href="">
             <div class="anime-id">${getSeries[index].serie_id}</div>
             <div class="image-swiper-cont">
-                <img src="${getSeries[index].image}" alt="popular-image">
+                <img src="${getSeries[index].image}" alt="popular-image" loading="lazy">
                 <div class="anime-title-cont">
                     <span class="anime-title">${getSeries[index].name}</span>
                 </div>
@@ -239,13 +236,13 @@ const drawAnimeRandom = (serie) => {
     randomContainer.innerHTML = `
         <div class="anime-id">${serie.mal_id}</div>
         <div class="anime-background-image">
-            <img src="${serie.images["webp"].large_image_url}" alt="random-anime-background">
+            <img src="${serie.images["webp"].large_image_url}" alt="random-anime-background" loading="lazy">
         </div>
 
         <div class="anime-random-cont">
                         
             <div class="anime-random-image-cont">
-                <img src="${serie.images["webp"].large_image_url}" alt="anime-random">
+                <img src="${serie.images["webp"].large_image_url}" alt="anime-random" loading="lazy">
             </div>
 
             <div class="info-anime-random">
@@ -262,8 +259,8 @@ const drawAnimeRandom = (serie) => {
                 </div>
 
                 <div class="generate-cont">
-                    <button id="generate-anime">Generate anime</button>
-                    <button id="more-info-anime">More info</button>
+                    <button id="generate-anime" aria-label="anime random button generator">Generate anime</button>
+                    <button id="more-info-anime" aria-label="more anime info button">More info</button>
                 </div>
             </div>
         </div>
@@ -294,6 +291,7 @@ const generateAnimeRandom = async () => {
         let animeRandom = await response.json();
 
         const isHentai = animeRandom.data.genres.some(genre => genre.name.toLowerCase() === 'hentai');
+        
         if (isHentai) {
             console.log("Hentai genre detected, fetching another anime...");
             generateAnimeRandom(); 
@@ -324,7 +322,3 @@ document.addEventListener("DOMContentLoaded", () =>{
     generateAnimeRandom();
     inicializeAnimation();
 });
-
-/*  
-   Seguir buscando bugs
-*/

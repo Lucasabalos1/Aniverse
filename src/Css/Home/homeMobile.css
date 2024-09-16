@@ -75,12 +75,6 @@ main{
     text-align: start;
 }
 
-.description{
-    color: #777;
-    font-size: 0.7rem;
-    font-weight: bold;
-}
-
 .more-info-button-cont{
     width: 100%;
     position: absolute;

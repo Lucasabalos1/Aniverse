@@ -1,12 +1,12 @@
 const favoriteContainer = document.querySelector(".info-favorites-cont");
 const popularContainer = document.querySelector(".info-popular-cont");
-const userList = document.querySelector(".user-list-section");
-const popularList = document.querySelector(".popular-list-section");
-const currentList = localStorage.getItem("current-list");
-const userListBtn = document.getElementById("userListBtn");
-const popularListBtn = document.getElementById("popularListBtn");
 const modalEdit = document.querySelector(".modal-background-container");
 const closeEditModal = document.getElementById("close-edit-button");
+const currentList = localStorage.getItem("current-list");
+const userList = document.querySelector(".user-list-section");
+const popularList = document.querySelector(".popular-list-section");
+const userListBtn = document.getElementById("userListBtn");
+const popularListBtn = document.getElementById("popularListBtn");
 
 const currentControler = {
   page:1,
@@ -76,6 +76,14 @@ const toggleList = (btn) => {
   }
 };
 
+const getAnimeFromDataBase = (animeId) => {
+  const storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
+
+  let user = storageData.usuarios.find(u => u.user_id === userId)
+
+  return user.series.find(s => s.serie_id === parseInt(animeId));
+}
+
 const editScore = (score, animeId, animeContainer) => {
   let storageData = JSON.parse(localStorage.getItem("seriesPorUsuario"));
 
@@ -99,37 +107,36 @@ const editModal = async(animeId, animeContainer) => {
 
   modalInfoCont.innerHTML = ""
 
-  //cambiar por obtener desde el localStorage 
-  const results = await callForApi(`https://api.jikan.moe/v4/anime/${animeId}`);
-
+  const results = getAnimeFromDataBase(animeId);
+  
   const editCont = document.createElement("DIV");
 
   editCont.classList.add("edit-cont");
 
   editCont.innerHTML = `
         <div class="image-modal-cont">
-                <img src="${results.images["webp"].large_image_url}" alt="anime-image">
+                <img src="${results.image}" alt="anime-image">
             </div>
             <div class="info-anime-cont">
                 <div class="anime-modal-title-cont">
-                    <span class="anime-modal-title">${results.title}</span>
+                    <span class="anime-modal-title">${results.name}</span>
                 </div>
                 <div class="score-input-cont">
                     <input type="number" id="score-input" class="score-input" min="0" max="10" maxlength="2" placeholder="score">
-                    <button class="submit-score">Save</button>
+                    <button class="submit-score" aria-label="save button">Save</button>
                 </div>
           </div>
   `
-  modalInfoCont.appendChild(editCont);
-  editCont.querySelector(".submit-score").addEventListener("click", () => {
-    const newScore = editCont.querySelector(".score-input").value;
+    modalInfoCont.appendChild(editCont);
+    editCont.querySelector(".submit-score").addEventListener("click", () => {
+      const newScore = editCont.querySelector(".score-input").value;
 
-    if (newScore === "" || newScore > 10) {
-      return;
-    }
+      if (newScore === "" || newScore > 10) {
+        return;
+      }
 
-    editScore(newScore, animeId, animeContainer)
-  });
+      editScore(newScore, animeId, animeContainer)
+    });
 }
 
 const showModalEdit = () => {
@@ -154,7 +161,7 @@ const drawFavoritesSeries = (series) => {
                                 <div class="img-cont">
                                     <img src="${
                                       series[index].image
-                                    }" alt="anime-img">
+                                    }" alt="anime-img" loading="lazy">
                                 </div>
                             </div>
 
@@ -217,7 +224,7 @@ const drawPopularSeries = (series) => {
                                     <img src="${
                                       series[index].images["webp"]
                                         .large_image_url
-                                    }" alt="anime-img">
+                                    }" alt="anime-img" loading="lazy">
                                 </div>
                             </div>
 
@@ -249,18 +256,19 @@ const drawPopularSeries = (series) => {
 };
 
 const loadPopularSeries = async (page) => {
-  const url = `https://api.jikan.moe/v4/top/anime?page=${page}`;
-
-  const data = await callForApi(url);
-
-  drawPopularSeries(data);
+  try {
+    const url = `https://api.jikan.moe/v4/top/anime?page=${page}`;
+    const data = await callForApi(url);
+    drawPopularSeries(data);
+  } catch (error) {
+    console.log(`API call failed: ${error.message}`)
+  }
 };
 
 document.querySelector(".more-animes-btn").addEventListener("click", () => {
   currentControler.nextPage();
   loadPopularSeries(currentControler.getPage());
 });
-
 document.addEventListener("DOMContentLoaded", loadFavoriteSeries);
 document.addEventListener("DOMContentLoaded", () => {
   loadPopularSeries(currentControler.getPage());
