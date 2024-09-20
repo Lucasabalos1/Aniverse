@@ -175,7 +175,7 @@ const inicializeSwipperUserList = () => {
           prevEl: ".swiper-button-prev",
         },
         simulateTouch: false,
-        slidesPerView: (window.screen.width < 800) ? 2 : 6
+        slidesPerView: (window.screen.width < 700) ? 2 : 6
 
       });
 }
